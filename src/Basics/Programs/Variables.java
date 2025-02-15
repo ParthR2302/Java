@@ -28,12 +28,12 @@ public class Variables {
         System.out.println("Static Variables");
         System.out.println(cnt);
         System.out.println(Variables.cnt);
-        System.out.println(o1.cnt); // If we access a static variable like an instance variable (through an object), the compiler will show a warning message, which won’t halt the program. The compiler will replace the object name with the class name automatically.
+        // System.out.println(o1.cnt); // If we access a static variable like an instance variable (through an object), the compiler will show a warning message, which won’t halt the program. The compiler will replace the object name with the class name automatically.
 
-        o1.cnt = 17;
+        // o1.cnt = 17;
 
-        Variables o2 = new Variables();
-        System.out.println(o2.cnt);
+        // Variables o2 = new Variables();
+        // System.out.println(o2.cnt);
 
         // Static methods and non static methods can access static variables and call static methods.
         // Non static methods and non static variables can only be accessed by the object of the class.
