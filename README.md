@@ -8,7 +8,7 @@ There are multiple sections in this repo.
 
 1. [Basics of Java](./src/Basics/Java_Basics.md)
 2. [OOPS in Java](./src/OOPS/Java_OOPS.md)
-3. [Collections in Java](./src/Java%20Collections/Collections.md)
+3. [Collections in Java](./src/JavaCollections/Collections.md)
 
 ## CSS Properties used:
 
