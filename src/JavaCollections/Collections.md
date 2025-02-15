@@ -55,9 +55,9 @@ Therefore, Java developers decided to come up with a common interface to deal wi
 
 Hierarchy of the collection framework:
 
-<image src="./images/collection-hierarchy.png" width="600" height="350"> <br>
+<image src="./images/collectionHierarchy.png" width="600" height="350"> <br>
 
-![image](./images/collection-hierarchy.png)
+![image](./images/collectionHierarchy.png)
 
 - The utility package, (java.util) contains all the classes and interfaces that are required by the collection framework. 
 - The collection framework contains an interface named an `iterable interface` which provides the iterator to iterate through all the collections. 
