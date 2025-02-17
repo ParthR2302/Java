@@ -19,6 +19,11 @@ class Circle extends Shape {
     public void draw() {
         System.out.println("Draw Method of Circle");
     }
+
+    public void circleMethod()
+    {
+        System.out.println("Independent method of the Circle class");
+    }
 }
 
 // ------------------------------------------------------------------------------------
@@ -86,7 +91,7 @@ public class AbstractClass {
         // NOTE: square object has Shape as the datatype and circle object has Circle as
         // the datatype
 
-        System.out.println("\nBreak 1 ------------------------ \n");
+        System.out.println("\nBreak 1 ----------------------------------------------------------------------------------------------\n");
 
         Subject sub = new IT();
         sub.Learn();
@@ -94,10 +99,18 @@ public class AbstractClass {
         sub.func();
         Subject.staticFunc();
 
-        System.out.println("\nBreak 2 ------------------------ \n");
+        System.out.println("\nBreak 2 ----------------------------------------------------------------------------------------------\n");
 
         D outer = new D();
         D.E inner = outer.new E();
         inner.myAbstractMethod(); 
+
+        System.out.println("\nBreak3 ----------------------------------------------------------------------------------------------\n");
+
+        Shape circle1 = new Circle();
+        circle1.draw();
+        // circle1.circleMethod(); // Error. As the initialization is done using Shape. circleMethod() is created in the Circle class, it is not present in the Shape interface
+        Circle circle2 = new Circle();
+        circle2.circleMethod(); // No error.
     }
 }

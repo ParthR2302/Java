@@ -12,6 +12,7 @@
 - [Loops](#loops)
 - [Methods](#methods)
 - [Arrays](#arrays) - Important topic (Includes 1D array, 2D array, array of objects, return array from methods, Cloning array)
+- [Variable Arguments](#variable-arguments-varargs-in-java)
 
 <br />
 
@@ -320,61 +321,6 @@ In Java, Jagged array is an array of arrays such that member arrays can be of di
 arr [][]= { {1,2}, {3,4,5,6},{7,8,9}};
 ```
 
-
-
-
-
-
-
-## Miscellaneous Material:
-
-1. [Object Class](#object-class)
-2. [Multiple Classes in One File](#multiple-classes-in-one-file)
-3. [Command Lines Arguments](#command-line-arguments)
-4. [Variable Arguments](#variable-arguments-varargs-in-java)
-
-### Object Class:
-
-[code file](./Programs/ObjectClass.java) <br/>
-
-Object class in Java is present in `java.lang` package [[3](#references)]. Every class in Java is <u>directly or indirectly derived from the Object class</u>. If a class does not extend any other class then it is a direct child class of the Java Object class and if it extends another class then it is indirectly derived. 
-
-The Object class provides several methods such as `toString(),equals(), hashCode(), and many others`. <br />
-List of methods from Object class: toString(); hashCode(); equals(Object obj); finalize(); getClass(); clone(); wait(), notify() notifyAll() (Concurrency methods) <br />
-We can override the methods of Object class in our defined class.
-
-### Multiple Classes in one file
-[code file](./Programs/MultipleClasses.java) <br />
-- At most one public class in Java. 
-- If there is one public class then the <u>name of that class must be same as the name of the file</u>.
-
-- Multiple classes in same file can have their own main method. 
-```java
-class Test {
-    public static void main(String[] args) {
-        System.out.println("Main Method of Test Class");
-    }
-}
-
-public class MultipleClasses {
-    int x;
-
-    public static void main(String[] args) {
-        System.out.println("Main method of MultipleClasses class");
-    }
-}
-```
-We can compile the file and run specif class using:
-```bash
-javac MultipleClasses.java
-java MultipleClasses
-java Test
-```
-
-## Command Line Arguments:
-
-[Code](./Programs/CommandLineArguments.java)
-
 ## Variable Arguments (Varargs) in Java:
 
 [Code](./Programs/VariableArgs.java)
@@ -423,6 +369,58 @@ void method2(int... args, string str) {}
 2. Before JDK 5, variable length arguments could be handled in two ways: One was using overloading, other was using array argument.
 3. There can be only one variable argument in a method.
 4. Variable argument (Varargs) must be the last argument.
+
+
+
+
+
+## Miscellaneous Material:
+
+1. [Object Class](#object-class)
+2. [Multiple Classes in One File](#multiple-classes-in-one-file)
+3. [Command Lines Arguments](#command-line-arguments)
+
+### Object Class:
+
+[code file](./Programs/ObjectClass.java) <br/>
+
+Object class in Java is present in `java.lang` package [[3](#references)]. Every class in Java is <u>directly or indirectly derived from the Object class</u>. If a class does not extend any other class then it is a direct child class of the Java Object class and if it extends another class then it is indirectly derived. 
+
+The Object class provides several methods such as `toString(),equals(), hashCode(), and many others`. <br />
+List of methods from Object class: toString(); hashCode(); equals(Object obj); finalize(); getClass(); clone(); wait(), notify() notifyAll() (Concurrency methods) <br />
+We can override the methods of Object class in our defined class.
+
+### Multiple Classes in one file
+[code file](./Programs/MultipleClasses.java) <br />
+- At most one public class in Java. 
+- If there is one public class then the <u>name of that class must be same as the name of the file</u>.
+
+- Multiple classes in same file can have their own main method. 
+```java
+class Test {
+    public static void main(String[] args) {
+        System.out.println("Main Method of Test Class");
+    }
+}
+
+public class MultipleClasses {
+    int x;
+
+    public static void main(String[] args) {
+        System.out.println("Main method of MultipleClasses class");
+    }
+}
+```
+We can compile the file and run specif class using:
+```bash
+javac MultipleClasses.java
+java MultipleClasses
+java Test
+```
+
+## Command Line Arguments:
+
+[Code](./Programs/CommandLineArguments.java)
 
 
 

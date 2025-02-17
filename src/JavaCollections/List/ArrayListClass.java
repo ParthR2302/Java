@@ -1,17 +1,21 @@
 package JavaCollections.List;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
- * Common methods of ArrayList class: 
+ * Inbuilt methods of ArrayList class: 
  * - add(). [Using Object only -> add(<Object>), Using Object and Index -> add(<Index>, <Object>)]
  * - addAll(index, collection) [After Break 5 in the code]
  * - size()
  * - get(<Index>)
  * - set(<Index>, <Object>)
  * - clear() [Remove all the elements from the list, however the reference of the list created is still stored.]
- * - remove(). [Using Object -> remove(<Object>), Using Index -> remove(<Index>)]
+ * - remove(). [Using Object -> remove(<Object>): It will remove the first occurence of the Object, Using Index -> remove(<Index>)]
+ *      - If the list contains Integer objects. remove(2) would take 2 as index because 2 is int. remove((Integer)2) would take 2 as an element.
+ * - removeIf() [We can delete all the occurences of an object using condition]
+ * 
  * - getFirst(), getLast(), getClass()
  * - indexOf(<Object>) [Returns the first index of the Object]
  * - lastIndexOf(<Object>)
@@ -49,6 +53,7 @@ public class ArrayListClass {
         /*
          * Printing entire list:
          */
+        System.out.println(ls);
         ArrayListClass.printList(ls);
         
         /*
@@ -57,6 +62,23 @@ public class ArrayListClass {
         System.out.println("Sixe of the list is: " + ls.size());
         System.out.println("Element at index 1: " + ls.get(1));
         System.out.println("First Element: " + ls.getFirst() + ", Last Element: " + ls.getLast());
+
+        System.out.println("\nBreak 0 ------------------------------------------------------------------------------------------\n");
+
+        /*
+         * Different methods of creating lists
+        */
+        List<String> ls01 = new ArrayList<>();
+        ArrayList<String> ls02 = new ArrayList<>();
+        List<String> ls03 = Arrays.asList("Monday", "Tuesday");
+        String[] strArr = {"Jan", "Feb", "March"};
+        List<String> ls04 = Arrays.asList(strArr);
+
+        System.out.println(ls01);
+        System.out.println(ls02);
+        System.out.println(ls03);
+        System.out.println(ls04);
+        
 
         System.out.println("\nBreak 1 ------------------------------------------------------------------------------------------\n");
 
@@ -76,9 +98,19 @@ public class ArrayListClass {
         ls.add("Dummy1");
         System.out.print("List before removing element: ");
         ArrayListClass.printList(ls);
-        ls.remove("Dummy1"); // Using Object
-        ls.remove(ls.size() - 1); // Using Index
+        ls.remove("Dummy1"); // Using Object - It removes the first occurence of the passed Object
+        System.out.println(ls);
+        ls.remove(ls.size() - 3); // Using Index
         System.out.print("List after removing Dummy1 element: ");
+        ArrayListClass.printList(ls);
+
+        ls.add("Dummy1");
+        ls.add("Dummy1");
+        ls.add("Dummy1");
+        System.out.print("List before removing all the occurrences of Dummy1: ");
+        ArrayListClass.printList(ls);
+        ls.removeIf(s -> s.equals("Dummy1"));
+        System.out.print("List after removing all the occurrences of Dummy1: ");
         ArrayListClass.printList(ls);
 
         System.out.println("\nBreak 3 ------------------------------------------------------------------------------------------\n");
@@ -127,5 +159,23 @@ public class ArrayListClass {
         if(ls.equals(ls2)) System.out.println("Both ls and ls2 are equal");
         else System.out.println("Both ls and ls2 are different");
 
+        System.out.println("\nBreak 6 ------------------------------------------------------------------------------------------\n");
+        /*
+         * Example of size increament in ArrayList
+         */
+
+        ArrayList<Integer> ls3 = new ArrayList<>(3);
+
+        System.out.println("Current size of ls3: " + ls3.size());
+
+        ls3.add(1);
+        ls3.add(2);
+
+        System.out.println("Current size of ls3: " + ls3.size());
+
+        ls3.add(3);
+        ls3.add(15);
+
+        System.out.println("Current size of ls3: " + ls3.size());
     }
 }
