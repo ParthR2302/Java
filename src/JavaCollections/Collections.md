@@ -5,6 +5,7 @@
 - [Hierarchy](#hierarchy)
 - [Collection Interface](#collection-interface)
     - [List Interface](#list-interface)
+    - [Set Interface](#set-interface)
 
 <br>
 
@@ -104,7 +105,9 @@ How does **resizing** occur:
 
 We don't have direct access to capacity in ArrayList but it is directly accessible in [Vector](./List/VectorClass.java).
 
-`Note:` ArrayList grows dynamically, usually increasing capacity by 50% when it exceeds its current capacity. Vector grows by doubling its capacity when it exceeds its current limit.
+**Notes:**
+- ArrayList grows dynamically, usually increasing capacity by 50% when it exceeds its current capacity. Vector grows by doubling its capacity when it exceeds its current limit.
+- ArrayList and Vector can store null elements.
 
 ### ArrayList:
 
@@ -134,6 +137,7 @@ List<String> list4 = Arrays.asList(strArr);
 |Replace|O(1)|O(1)|
 |Travers|O(N)|O(1)|
 
+
 **Methods:**
 - All the methods are mentioned in the [code](./List/ArrayListClass.java).
 - remove(). It can either take Object as input or Index as input
@@ -146,6 +150,18 @@ There are three things that happen when remove() method is used:
 - Check bounds (If the index is within the valid range), remove the element (and shift all the elements that are in right side of the index by 1 in left direction), reduce the size
 - The capacity does not shrink automatically when remove() method is called.
 
+
+**Behaviour of removeIf() method:**
+
+```Java
+ArrayList<String> ls = Arrays.asList("Monday", "Dummy1", "Tuesday", "Dummy1", "Dummy1", "Wednesday", "Thursday");
+ls.removeIf(ele -> ele.equals("Dummy1"));
+System.out.println(ls); // [Monday, Tuesday, Wednesday, Thursday]
+// We can achieve the same behaviour using stream().
+ls = ls.stream().filter(ele -> !ele.equals("Dummy1")).collect(Collectors.toList());
+System.out.println(ls); // [Monday, Tuesday, Wednesday, Thursday]
+```
+
 <hr>
 
 ### Vector
@@ -155,6 +171,16 @@ There are three things that happen when remove() method is used:
 Same as ArrayList.
 
 Difference: Vector is thread-safe (Synchronized) whereas ArrayList is Not-Synchronized (not thread-safe)
+
+`Stack` is a subclass of Vector.
+
+**Constructors:**
+```Java
+Vector<E> v1 = new Vector<E>(); // Initial Capacity is 10. Increament is 2x
+Vector<E> v2 = new Vector<E>(int n); // Initial Capacity is n. Increament is 2x
+Vector<E> v3 = new Vector<E>(int n, int incr); // Initial Capacity is n. Increament is done by adding incr blocks everytime reisizing is needed.
+Vector<E> v4 = new Vector<E>(Collection c); // Creates a vector that contains the elements of collection c.
+```
 
 <hr>
 
@@ -174,6 +200,20 @@ Difference: Vector is thread-safe (Synchronized) whereas ArrayList is Not-Synchr
 |Memory Allocation|Typically allocated one by one to individual elements|Typically allocated to the whole array|
 |Insertion-Deletion|Efficient|Inefficient|
 |Access|Sequential|Random|
+
+**Advantages of Linked List:**
+- Dynamic size like Vector.
+- Efficient Insertions and Deletions: LinkedList is an efficient data structure for inserting or deleting elements in the middle of the list because you only need to change the links between elements, rather than shifting all elements after the insertion or deletion point.
+
+**Disadvantages of Linked List:**
+- Memory overhead: LinkedList requires more memory than ArrayList because each element requires additional memory for the links to its predecessor and successor elements.
+
+
+## Set Interface:
+
+
+
+
 
 
 

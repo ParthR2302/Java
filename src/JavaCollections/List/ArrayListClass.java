@@ -3,6 +3,7 @@ package JavaCollections.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /*
  * Inbuilt methods of ArrayList class: 
@@ -15,6 +16,7 @@ import java.util.List;
  * - remove(). [Using Object -> remove(<Object>): It will remove the first occurence of the Object, Using Index -> remove(<Index>)]
  *      - If the list contains Integer objects. remove(2) would take 2 as index because 2 is int. remove((Integer)2) would take 2 as an element.
  * - removeIf() [We can delete all the occurences of an object using condition]
+ * - removeRange(fronIndex, toIndex)
  * 
  * - getFirst(), getLast(), getClass()
  * - indexOf(<Object>) [Returns the first index of the Object]
@@ -109,7 +111,8 @@ public class ArrayListClass {
         ls.add("Dummy1");
         System.out.print("List before removing all the occurrences of Dummy1: ");
         ArrayListClass.printList(ls);
-        ls.removeIf(s -> s.equals("Dummy1"));
+        // ls.removeIf(s -> s.equals("Dummy1"));
+        ls = ls.stream().filter(ele -> !ele.equals("Dummy1")).collect(Collectors.toList()); // This stram() can be configured to work as removeIf().
         System.out.print("List after removing all the occurrences of Dummy1: ");
         ArrayListClass.printList(ls);
 
