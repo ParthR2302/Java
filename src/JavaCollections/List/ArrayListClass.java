@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * - remove(). [Using Object -> remove(<Object>): It will remove the first occurence of the Object, Using Index -> remove(<Index>)]
  *      - If the list contains Integer objects. remove(2) would take 2 as index because 2 is int. remove((Integer)2) would take 2 as an element.
  * - removeIf() [We can delete all the occurences of an object using condition]
- * - removeRange(fronIndex, toIndex)
+ * - removeRange(fromIndex, toIndex)
  * 
  * - getFirst(), getLast(), getClass()
  * - indexOf(<Object>) [Returns the first index of the Object]
@@ -61,7 +61,7 @@ public class ArrayListClass {
         /*
          * Printing size, element at given index, First Element and Last Element:
          */
-        System.out.println("Sixe of the list is: " + ls.size());
+        System.out.println("Size of the list is: " + ls.size());
         System.out.println("Element at index 1: " + ls.get(1));
         System.out.println("First Element: " + ls.getFirst() + ", Last Element: " + ls.getLast());
 

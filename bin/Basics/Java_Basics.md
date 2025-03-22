@@ -1,14 +1,20 @@
 # Java From Scratch
 
 ### Index:
+
 - [JDK, JRE, JVM](#what-is-jdk-jvm-and-jre)
 - [Key Fetures](#key-features-of-java)
 - [Data Types](#data-types)
 - [Variables](#variables)
 - [Operators](#operators)
+- [User Inputs](#user-inputs)
 - [Decision Making](#decision-making)
 - [Loops](#loops)
 - [Methods](#methods)
+- [Arrays](#arrays) - Important topic (Includes 1D array, 2D array, array of objects, return array from methods, Cloning array)
+- [Variable Arguments](#variable-arguments-varargs-in-java)
+
+<br />
 
 - [**IMPORTANT**: Additional Material](#miscellaneous-material)
 - [References](#references)
@@ -103,6 +109,53 @@ Type of Operators in Java:
 
 Precedence and Associativity of Java Operators:
 
+## User Inputs:
+
+[Code](./Programs/UserInputs.java)
+
+We can take user input using the inbulit `Scanner` class of Java.
+
+**Notes regarding Scanner class** <br />
+
+- Scanner class is a part of the `java.utils` package.
+- Argument for the Scanner class constructor is `System.in`.
+- We can close the scanner using the inbuilt `close()` method of the Scanner class.
+
+```Java
+// Sample code
+import java.utils.Scanner;
+
+public void func()
+{
+    Scanner sc = new Scanner(System.in);
+
+    int num = sc.nextInt();
+    System.out.println(num);
+
+    sc.close();
+}
+```
+
+### List of inbuilt methods of Scanner class:
+
+nextBoolean(), nextByte(), nextDouble(), nextFloat(), nextInt(), nextLong(), nextShort(), next(), nextLine(). <br />
+Use of next() and nextLine() is shown in the `hybridScan()` method of the [code](./Programs/UserInputs.java).
+
+### 3 Different ways to take input in Java:
+
+Three ways: Scanner, BufferedReader, and Console [[$$](#references)]
+
+- `Scanner` is the most commonly used class for taking user input because of its ease of use.
+- `BufferedReader` is the most commonly used class for taking user input because of its ease of use.
+- `Console` is the most commonly used class for taking user input because of its ease of use.
+
+|Method|Pros|Cons|
+|--|--|--|
+|**Scanner**|1. Simple and easy to use. <br> 2. Supports different data types (int, double, String, etc.). <br> 3. Allows reading input from keyboard, files, and streams.|1. Slower compared to BufferedReader (because it does token parsing). <br> 2. nextLine() issue: Mixing nextInt() and nextLine() can cause problems.|
+|**BufferedReader**|1. Faster than Scanner (recommended for large input handling). <br> 2. No nextLine() issue like in Scanner.|1. Does not support primitive types (int, double, etc.) directly. <br> 2. Must manually convert String input to int/double using Integer.parseInt().|
+|**Console**|1. Best for reading passwords (hides input). <br> 2. Simple and direct.|1. Does not work in IDEs (like Eclipse or IntelliJ, unless running in a terminal). <br> 2. No direct support for int, double, etc.|
+||||
+
 ## Decision Making: 
 
 Decision Making Statements: if, if-else, switch, break, continue, jump (Three Jump Statements: break, continue and return).
@@ -137,12 +190,195 @@ Instance method: This method belongs to an object and requires an object to be c
 |this keyword|Cannot use the this keyword within static methods.|Can use the this keyword to refer to the current object.|
 |Override|Does not support runtime polymorphism|Supports runtime polymorphism|
 
+
+## Arrays:
+
+[Code](./Programs/Arrays.java)
+
+[1D Array](#1d-arrays) | [2D Array](#2d-arrays) | [Array of Objects](#array-of-objects) | [Return Array from Methods](#return-array-from-methods) | [Cloning Arrays](#cloning-arrays) | [Pros and Cons](#pros-and-cons-of-arrays-in-java)
+
+[Jagged Arrays](#jagged-arrays)
+
+Arrays in Java are objects, which makes them work differently from arrays in C/C++ in terms of memory management.
+
+An array can contain <u>primitives</u> (int, char, etc.) and object (or <u>non-primitive</u>) references of a class. <br>
+For primitive arrays, elements are stored in a contiguous memory location. For non-primitive arrays, references are stored at contiguous locations, but the actual objects may be at different locations in memory.
+
+In Java all arrays are `Dynamically Allocated`.
+
+**Note:** The elements in the array allocated by new keyword will automatically be initialized to zero (for numeric types), false (for boolean), or null (for reference types). Refer to [default array values in Java](#data-types).
+
+### 1D Arrays:
+
+```Java
+// Sample code:
+public void func()
+{
+    int arr[] = {1, 2, 53, 5, 13};
+    int n = arr.length;
+    for(int i=0;i<n;i++) { System.out.print(arr[i] + " "); }
+    System.out.println();
+
+    // Using new keyword
+    int arr2[] = new int[3];
+}
+```
+
+### 2D Arrays:
+
+```Java
+int[][] multiDimArray = {
+    { 1, 2, 3, 10 },
+    { 4, 5, 6, 20 },
+    { 7, 8, 9, 30 } };
+```
+
+### Array of Objects:
+
+Refer to the creation of the Array of Objects in the mentioned [code](./Programs/Arrays.java).
+
+### Return array from methods
+
+```Java
+public static int[] returnArray() {
+    return new int[] { 1, 13, 4 };
+}
+```
+
+### Array types and their allowed element types:
+
+|Array Types|Allowed Element Types|
+|---|---|
+|Primitive Type Arrays|Any type which can be implicitly promoted to declared type.|
+|Object Type Arrays|Either declared type objects or it’s child class objects.|
+|Abstract Class Type Arrays|Its child-class objects are allowed.|
+|Interface Type Arrays|Its implementation class objects are allowed.|
+
+
+### Cloning Arrays
+
+**1. Cloning of Single-Dimensional Array**
+
+- When you clone a single-dimensional array, such as `Object[]`, a **`shallow copy`** is performed. This means that the new array contains references to the original array’s elements rather than copies of the objects themselves. A **`deep copy`** occurs only with arrays containing `primitive` data types, where the actual values are copied. [[6](#references)]
+
+- We can clone a 1D array using `clone()` method of the Array class. 
+- If the datatype is a primitive then a Deep-copy is created (Meaning both the arrays would have their independent values. Changing a value at one index in one array would <u>not change</u> the value at same index in other array).
+- If datatype is of Object then  shallow copy is created. (Meaning both the arrays would be pointitng to same objects at same index, changing the object at one index using one array <u>would also reflect</u> on the same index in other array).
+
+Table for 1D array cloning using clone() method and = operator for both primitive and non-primitive datatypes:
+| Datatype | Using clone() method | Using "=" operator |
+|---|---|---|
+| Primitive | deep copying | shallow copying |
+| Objects | shallow copying | shallow copying |
+
+**2. Cloning Multidimensional Array**
+
+[Code](./Programs/CloneMatrix.java)
+
+- A clone of a multi-dimensional array (like Object[][]) is a “shallow copy,” however, which is to say that it creates only a single new array with each element array a reference to an original element array, but subarrays are shared. [[Chat GPT Section Ref](#references)] 
+
+<img src="./images/2D Array Clone using clone method.png" width="400" height="250">
+
+- = operator in 2D array `does not create a new array`. Both variables point to the same memory location.
+- clone() method in 2D array, `creates a new top level array`, but the `inner arrays are still the same references`.
+
+<br>
+
+**Notes for Matrix of Primitive Datatypes:**
+1. Using = operator, Both original and assigned changed because they reference the same array. This is `not a copy`; it's just another reference.
+2. Using clone() method directly creates a `shallow copy`. Only the outer array is cloned, but the inner arrays are still shared.
+3. To create a deep copy, Since clone() does not deep copy 2D arrays, we must manually copy each inner array. Refer to deepCopyMat() method of [code](./Programs/CloneMatrix.java)
+
+<br> Table for 2D array cloning using clone() method and = operator for both primitive and non-primitive datatypes:
+|Aspect|Primitive 2D Array (int[][])|Non-Primitive 2D Array (Person[][])|
+|---|---|---|
+|= (Assignment)|Both reference the same 2D array. Changes affect both.|Both reference the same 2D array. Changes affect both.|
+|.clone() (Shallow Copy)|Creates a new outer array, but inner arrays are shared (not copied).|Creates a new outer array, but inner arrays and objects are shared (not copied).|
+|Deep Copy Required?|Only for inner arrays (original[i].clone()).|Inner arrays and objects must be copied separately.|
+|Modification in Cloned Array Affects Original?|Yes, for inner elements (If no deep copy done) |Yes, for inner objects (If no deep copy done) |
+|True Deep Copy|Clone each inner array.|Clone each inner array and create new objects inside.|
+
+
+### Pros and Cons of Arrays in Java:
+
+**Advantages of Java Arrays**
+
+1. Efficient Access: Accessing an element by its index is fast and has constant time complexity, O(1).
+2. Memory Management: Arrays have fixed size, which makes memory management straightforward and predictable.
+3. Data Organization: Arrays help organize data in a structured manner, making it easier to manage related elements.
+
+**Disadvantages of Java Arrays**
+
+1. Fixed Size: Once an array is created, its size cannot be changed, which can lead to memory waste if the size is overestimated or insufficient storage if underestimated.
+2. Type Homogeneity: Arrays can only store elements of the same data type, which may require additional handling for mixed types of data.
+3. Insertion and Deletion: Inserting or deleting elements, especially in the middle of an array, can be costly as it may require shifting elements.
+
+### Jagged Arrays:
+
+In Java, Jagged array is an array of arrays such that member arrays can be of different sizes, i.e., we can create a 2-D array but with a variable number of columns in each row.
+
+```Java
+arr [][]= { {1,2}, {3,4,5,6},{7,8,9}};
+```
+
+## Variable Arguments (Varargs) in Java:
+
+[Code](./Programs/VariableArgs.java)
+
+Variable Arguments (Varargs) in Java is a method that takes a variable number of arguments. [[5](#references)]
+
+```Java
+public void func(String... arguments)
+{
+    // We can treat the arguments in kind of similar way like list
+    int len = arguments.length;
+    for(int i=0;i<len;i++) // Access elements using arguments[i]
+    for(String str : arguments) // Each str would represent strings in arguments
+}
+
+// Inside main:
+func("S1", "S2", "S3") // We can pass multiple arguments
+```
+
+**Need of Java Varargs:** <br />
+Until JDK 4, we cant declare a method with variable no. of arguments. If there is any change in the number of arguments, we have to declare a new method. This approach increases the length of the code and reduces readability.
+
+Before JDK 5, variable-length arguments could be handled in two ways.
+- One uses an overloaded method(one for each).
+- Another puts the arguments into an array and then passes this array to the method. Both of them are potentially error-prone and require more code. 
+
+To resolve these problems, Variable Arguments (Varargs) were introduced in JDK 5.
+
+**Erroneous Varargs Examples:**
+
+- We cannot pass two varargs in one function.
+
+- If there are both varargs and non-varargs variables passed then the non-varargs variables must be passed first. Varargs must be at the end.
+
+```java 
+void method1(String… gfg, int… q) {} 
+// Error in method1: The variable argument type String of the method method must be the last parameter
+
+void method2(int... args, string str) {}
+// Error in method1: The variable argument type int of the method method must be the last parameter
+
+```
+
+**Key Points Regarding Varargs:** <br />
+1. Vararg Methods can also be overloaded, but overloading may lead to ambiguity.
+2. Before JDK 5, variable length arguments could be handled in two ways: One was using overloading, other was using array argument.
+3. There can be only one variable argument in a method.
+4. Variable argument (Varargs) must be the last argument.
+
+
+
+
+
 ## Miscellaneous Material:
 
 1. [Object Class](#object-class)
 2. [Multiple Classes in One File](#multiple-classes-in-one-file)
 3. [Command Lines Arguments](#command-line-arguments)
-4. [Variable Arguments](#variable-arguments-varargs-in-java)
 
 ### Object Class:
 
@@ -186,54 +422,15 @@ java Test
 
 [Code](./Programs/CommandLineArguments.java)
 
-## Variable Arguments (Varargs) in Java:
 
-[Code](./Programs/VariableArgs.java)
 
-Variable Arguments (Varargs) in Java is a method that takes a variable number of arguments. [[5](#references)]
 
-```Java
-public void func(String... arguments)
-{
-    // We can treat the arguments in kind of similar way like list
-    int len = arguments.length;
-    for(int i=0;i<len;i++>) // Access elements using arguments[i]
-    for(String str : arguments) // Each str would represent strings in arguments
-}
 
-// Inside main:
-func("S1", "S2", "S3") // We can pass multiple arguments
-```
 
-**Need of Java Varargs:** <br />
-Until JDK 4, we cant declare a method with variable no. of arguments. If there is any change in the number of arguments, we have to declare a new method. This approach increases the length of the code and reduces readability.
 
-Before JDK 5, variable-length arguments could be handled in two ways.
-- One uses an overloaded method(one for each).
-- Another puts the arguments into an array and then passes this array to the method. Both of them are potentially error-prone and require more code. 
 
-To resolve these problems, Variable Arguments (Varargs) were introduced in JDK 5.
 
-**Erroneous Varargs Examples:**
 
-We cannot pass two varargs in one function.
-
-If there are non-varargs variables passed then they should be passed first. Varargs must be at the end.
-
-```java 
-void method1(String… gfg, int… q) {} 
-// Error in method1: The variable argument type String of the method method must be the last parameter
-
-void method2(int... args, string str) {}
-// Error in method1: The variable argument type int of the method method must be the last parameter
-
-```
-
-**Key Points Regarding Varargs:** <br />
-1. Vararg Methods can also be overloaded, but overloading may lead to ambiguity.
-2. Before JDK 5, variable length arguments could be handled in two ways: One was using overloading, other was using array argument.
-3. There can be only one variable argument in a method.
-4. Variable argument (Varargs) must be the last argument.
 
 ## References:
 
@@ -242,3 +439,8 @@ void method2(int... args, string str) {}
 [3] [Object Class](https://www.geeksforgeeks.org/object-class-in-java/) <br />
 [4] [Static Method VS Non Static Method](https://www.geeksforgeeks.org/static-methods-vs-instance-methods-java/) <br />
 [5] [Variable Arguments - Varargs](https://www.geeksforgeeks.org/variable-arguments-varargs-in-java/) <br />
+[6] [Cloning Arrays](https://www.geeksforgeeks.org/arrays-in-java/?form=MG0AV3) <br />
+
+
+<br><br>
+[$$] [Chat GPT](https://chatgpt.com/c/67a48172-a840-8013-a226-6c8ce6662fd1)
