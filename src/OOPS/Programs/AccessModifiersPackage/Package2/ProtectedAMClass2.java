@@ -15,6 +15,6 @@ public class ProtectedAMClass2 {
 
 class Parent {
     protected void display() {
-        System.out.println("Inside Protected method display() of ProtectedAMClass2 class");
+        System.out.println("Inside Protected method display() of Parent class");
     }
 }

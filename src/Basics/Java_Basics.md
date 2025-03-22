@@ -5,7 +5,7 @@
 - [JDK, JRE, JVM](#what-is-jdk-jvm-and-jre)
 - [Key Fetures](#key-features-of-java)
 - [Data Types](#data-types)
-- [Variables](#variables)
+- [Variables](#variables) (Local, Instance and Static)
 - [Operators](#operators)
 - [User Inputs](#user-inputs)
 - [Decision Making](#decision-making)
@@ -91,6 +91,7 @@ Unlike languages such as C or C++ that use the ASCII character set, Java uses th
     - Initialization of an static variable is not mandatory.
     - If we access a static variable like an instance variable (through an object), the compiler will show a warning message, which won’t halt the program. The compiler will replace the object name with the class name automatically.
 
+**Notes:**
 - Static methods and static variables can be accessed directly by any static and non-static method.
 - Non static methods and non static variables can only be accessed by the object of the class.
 

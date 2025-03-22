@@ -57,6 +57,10 @@ class IT extends Subject {
     void syllabus() {
         System.out.println("C , Java , C++");
     }
+
+    void ITMethod() {
+        System.out.println("Independent method of IT class");
+    }
 }
 
 // ------------------------------------------------------------------------------------
@@ -97,6 +101,8 @@ public class AbstractClass {
         sub.Learn();
         sub.syllabus();
         sub.func();
+        // sub.ITMethod(); // Error, as declaration is done like Subject sub = new IT();
+        // If declaration was done like IT sub = new IT(); then it would not have given error.
         Subject.staticFunc();
 
         System.out.println("\nBreak 2 ----------------------------------------------------------------------------------------------\n");

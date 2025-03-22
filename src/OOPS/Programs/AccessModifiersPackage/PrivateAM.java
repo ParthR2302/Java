@@ -27,7 +27,7 @@ class C1 {
 }
 
 class Child extends C1 {
-    // Child object only inherits cnt2, display() and getCnt1() from C1 class.
+    // Child object only inherits num, cnt2, display() and getCnt1() from C1 class.
 }
 
 public class PrivateAM {
