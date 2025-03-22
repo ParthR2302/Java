@@ -186,6 +186,8 @@ Refer to [Abstraction](#abstract-class-and-methods)
 
 ## Interface:
 
+
+
 Another way to achieve <ins>abstraction</ins> in Java, is with interfaces.
 
 An `interface` is a completely **"abstract class"** that is used to group related methods with empty bodies:
