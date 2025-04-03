@@ -70,16 +70,26 @@ public class ArrayListClass {
         /*
          * Different methods of creating lists
         */
-        List<String> ls01 = new ArrayList<>();
+        List<String> ls01 = new ArrayList<>(); // Dynamic size
         ArrayList<String> ls02 = new ArrayList<>();
-        List<String> ls03 = Arrays.asList("Monday", "Tuesday");
+        List<String> ls03 = Arrays.asList("Monday", "Tuesday"); // Fixed size
         String[] strArr = {"Jan", "Feb", "March"};
-        List<String> ls04 = Arrays.asList(strArr);
+        List<String> ls04 = Arrays.asList(strArr); // Fixed size
 
         System.out.println(ls01);
         System.out.println(ls02);
         System.out.println(ls03);
         System.out.println(ls04);
+
+        System.out.println(ls01.getClass().getName());
+        System.out.println(ls03.getClass().getName());
+        System.out.println(ls04.getClass().getName());
+
+        // ls03.add("Wednesday"); // Exception
+        // ls03 is of fixed size so we cannot add elements. We can update elements
+
+        ls03.set(1, "Wednesday");
+        System.out.println(ls03);
         
 
         System.out.println("\nBreak 1 ------------------------------------------------------------------------------------------\n");

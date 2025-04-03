@@ -12,6 +12,7 @@
 - [Inner Class](#inner-class)
 - [Abstraction](#abstraction)
 - [Interface](#interface)
+- [Enums](#enums)
 
 - [References](#references)
 
@@ -126,6 +127,7 @@ import package.name.*;   // Import the whole package
 [Code](./Programs/Inheritance/Inheritance.java)
 
 subclass (child) - the class that inherits from another class
+
 superclass (parent) - the class being inherited from
 
 We use `entends` keyword to inherit from a class.
@@ -142,13 +144,29 @@ There are multiple types of Inheritance we can achieve in Java[[4]](#references)
 
 ### Single Inheritance:
 
+In single inheritance, a sub-class is derived from only one super class.
+
 ### Multilevel Inheritance:
+
+In Multilevel Inheritance, a derived class will be inheriting a base class, and as well as the derived class also acts as the base class for other classes.
 
 ### Hierarchical Inheritance:
 
+In Hierarchical Inheritance, one class serves as a superclass (base class) for more than one subclass.
+
 ### Multiple Inheritance:
 
+[Code](./Programs/Inheritance/MultipleInheritance.java)
+
+In Multiple inheritances, one class can have more than one superclass and inherit features from all parent classes. Java `does not support` multiple inheritances `with classes`.
+
+In Java, we can achieve multiple inheritances only `through Interfaces`.
+
 ### Hybrid Inheritance:
+
+It is a mix of two or more of the above types of inheritance. 
+
+Since Java doesn’t support multiple inheritances with classes, hybrid inheritance involving multiple inheritance is also not possible with classes. In Java, we can achieve hybrid inheritance only through Interfaces if we want to involve multiple inheritance to implement Hybrid inheritance.
 
 ## Polymorphism:
 
@@ -156,7 +174,7 @@ There are multiple types of Inheritance we can achieve in Java[[4]](#references)
 
 Polymorphism means "many forms", and it occurs when we have many classes that are related to each other by inheritance.
 
-Parent class is Animal which has a method named animalSound(). Sub classes can be Dob, Cat, Pig. They can have their own animalSound() methods.
+Parent class is Animal which has a method named animalSound(). Sub classes can be Dog, Cat, Pig. They can have their own animalSound() methods.
 
 ## Inner Class: 
 
@@ -173,7 +191,7 @@ One `advantage of inner classes`, is that they can access attributes and methods
 ## Abstraction: 
 
 Data abstraction is the process of hiding certain details and showing only essential information to the user.
-Abstraction can be achieved with either abstract classes or interfaces (which you will learn more about in the next chapter).
+Abstraction can be achieved with either abstract classes or interfaces.
 
 The abstract keyword is a `non-access modifier`, used for classes and methods:
 
@@ -186,7 +204,7 @@ Refer to [Abstraction](#abstract-class-and-methods)
 
 ## Interface:
 
-
+[Code](./Programs/Interface.java)
 
 Another way to achieve <ins>abstraction</ins> in Java, is with interfaces.
 
@@ -202,6 +220,38 @@ To access the interface methods, the interface must be "implemented" (kinda like
 - Interface methods are by default abstract and public
 - Interface attributes are by default public, static and final
 - An interface cannot contain a constructor (as it cannot be used to create objects)
+
+
+## Enums:
+
+[Code](./Programs/EnumsJava/EnumsUse.java)
+
+
+An <span style="color:skyblue">enum</span> is a special "class" that represents a group of **constants** (unchangeable variables, like `final` variables).
+
+To create an enum, use the enum keyword (instead of class or interface), and separate the constants with a comma. Note that they should be in uppercase letters:
+
+We can loop through enum values using predefined values() method:
+
+```Java
+for (Level myVar : Level.values()) {
+  System.out.println(myVar);
+}
+```
+
+**Difference between Enums and Classes:**
+
+An enum can, just like a class, have attributes and methods. The only difference is that enum constants are public, static and final (unchangeable - cannot be overridden).
+
+An enum cannot be used to create objects, and it cannot extend other classes (but it can implement interfaces).
+
+
+
+
+
+
+
+
 
 ## References
 
