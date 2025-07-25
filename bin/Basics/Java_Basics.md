@@ -24,8 +24,6 @@
 **JDK** (Java Development Kit): It contains tools and libraries using which we can create Java Code. <br />
 It contains debugger, javac compiler, etc. It also contains JRE.
 
--- Dummy line added
-
 **JRE** (Java Runtime Envrionment): It provides an enviroment from which we can run the program. <br />
 JRE contains JVM.
 
