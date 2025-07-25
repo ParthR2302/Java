@@ -25,7 +25,7 @@
 It contains debugger, javac compiler, etc. It also contains JRE.
 
 **JRE** (Java Runtime Envrionment): It provides an enviroment from which we can run the program. <br />
-JRE contain JVM.
+JRE contains JVM.
 
 **JVM** (Java Virtual Machine): Java program runs becuase of JVM.
 
