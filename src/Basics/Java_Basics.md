@@ -21,25 +21,34 @@
 
 ## What is JDK, JVM and JRE?
 
-**JDK** (Java Development Kit): It contains tools and libraries using which we can create Java Code. <br />
-It contains debugger, javac compiler, etc. It also contains JRE.
+**JVM** (Java Virtual Machine): Java program runs becuase of JVM. 
+- Platform independent feature is because of JVM. JVM is platform dependent. JVM can read any byte.
 
 **JRE** (Java Runtime Envrionment): It provides an enviroment from which we can run the program. <br />
-JRE contains JVM.
+- JRE contains JVM and class libraries. (Java.lang.Math, Java.util libraries)
+- JVM comes as part of JRE. 
+- We can run any program using JRE as it contains JVM which understands the bytecode and it also contains libraries which are used in the code.
 
-**JVM** (Java Virtual Machine): Java program runs becuase of JVM.
+**JDK** (Java Development Kit): It contains tools and libraries using which we can create Java Code. <br />
+It contains debugger, javac compiler, etc. It also contains JRE.
 
 ### Flow:
 - Java file is created with **.java** extension.
 - This file is compiled using ```javac``` compiler and converted to a Bytecode. This Bytecode is platform <span style="color:skyblue">Independent</span>.
 - JVM undestands the Bytecode. JVM converts this Bytecode to Machine Code. This Machine Code is platform <span style="color:skyblue">Dependent</span>.
-    - JVM has a ```Just In Time (JIT)``` compiler. 
+    - JVM has a ```Just In Time (JIT)``` compiler. It take bytecode and converts it to machine code.
 
+`Java Program -> Compiler -> Byte Code -> JVM -> Machine Code -> CPU -> Output`
+
+
+- JSE: Java Standard Edition
+- JEE: Java Enterprise Edition -> JEE + APIs (Transactional APIs - Rollback, Commits, Servlets, Persistent APIs)
+- JME: Java Micro (Mobile) Edition -> APIs for Mobile aplications
 
 ## Key Features of Java:
 
 1. Platform Independent:
-    - Bytecode generated from any platform can be run onany platform. Each platform (Windows, Linux, Mac) has its own JVM which interprets the bytecode.
+    - Bytecode generated from any platform can be run on any platform (WORA - Write Once Run Anywhere). Each platform (Windows, Linux, Mac) has its own JVM which interprets the bytecode.
 2. Object Oriented Programming: <br>
     The four main concepts of Object-Oriented programming are:
     - Abstraction, Encapsulation, Inheritance, Polymorphism
@@ -393,7 +402,7 @@ We can override the methods of Object class in our defined class.
 
 ### Multiple Classes in one file
 [code file](./Programs/MultipleClasses.java) <br />
-- At most one public class in Java. 
+- At most `one public class` in Java. 
 - If there is one public class then the <u>name of that class must be same as the name of the file</u>.
 
 - Multiple classes in same file can have their own main method. 
@@ -421,7 +430,10 @@ java Test
 
 ## Command Line Arguments:
 
+Run Java code using terminal:
+
 [Code](./Programs/CommandLineArguments.java)
+
 
 
 
