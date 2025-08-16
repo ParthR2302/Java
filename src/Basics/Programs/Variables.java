@@ -43,6 +43,16 @@ public class Variables {
         System.out.println(cnt);
 
         func();
+
+        System.out.println("\nPrinting float value");
+        printFloat();
+
+    }
+
+    public static void printFloat() {
+        float f = .7f;
+        System.out.println("Value of float var is: " + (double)f);
+        // Prints 0.699999988079071 instead of 0.7
     }
 
     public static void func()

@@ -2,7 +2,7 @@ package Basics.Programs;
 class Person1 {
     String name;
     int age;
-    static String type = "Human";
+    static final String type = "Human";
 
     Person1(String name, int age)
     {

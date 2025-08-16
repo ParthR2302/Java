@@ -5,7 +5,14 @@
 - [JDK, JRE, JVM](#what-is-jdk-jvm-and-jre)
 - [Key Fetures](#key-features-of-java)
 - [Data Types](#data-types)
+- [Types of Conversion](#types-of-conversion)
 - [Variables](#variables) (Local, Instance and Static)
+- [Reference Data Type](#reference-data-types)
+    - [String](#string)
+    - [Arrays](#arrays)
+- [Wrapper Classes](#wrapper-classes)
+- [Constant Variables](#constant-variables)
+- [Constructors](#constructors)
 - [Operators](#operators)
 - [User Inputs](#user-inputs)
 - [Decision Making](#decision-making)
@@ -21,25 +28,35 @@
 
 ## What is JDK, JVM and JRE?
 
-**JDK** (Java Development Kit): It contains tools and libraries using which we can create Java Code. <br />
-It contains debugger, javac compiler, etc. It also contains JRE.
+**JVM** (Java Virtual Machine): Java program runs becuase of JVM. 
+- Platform independent feature is because of JVM. JVM is platform dependent. JVM can read any bytecode.
+- JVM calls main() method first.
 
 **JRE** (Java Runtime Envrionment): It provides an enviroment from which we can run the program. <br />
-JRE contains JVM.
+- JRE contains JVM and class libraries. (Java.lang.Math, Java.util libraries)
+- JVM comes as part of JRE. 
+- We can run any program using JRE as it contains JVM which understands the bytecode and it also contains libraries which are used in the code.
 
-**JVM** (Java Virtual Machine): Java program runs becuase of JVM.
+**JDK** (Java Development Kit): It contains tools and libraries using which we can create Java Code. <br />
+It contains debugger, javac compiler, etc. It also contains JRE.
 
 ### Flow:
 - Java file is created with **.java** extension.
 - This file is compiled using ```javac``` compiler and converted to a Bytecode. This Bytecode is platform <span style="color:skyblue">Independent</span>.
 - JVM undestands the Bytecode. JVM converts this Bytecode to Machine Code. This Machine Code is platform <span style="color:skyblue">Dependent</span>.
-    - JVM has a ```Just In Time (JIT)``` compiler. 
+    - JVM has a ```Just In Time (JIT)``` compiler. It take bytecode and converts it to machine code.
 
+`Java Program -> Compiler -> Byte Code -> JVM -> Machine Code -> CPU -> Output`
+
+
+- JSE: Java Standard Edition
+- JEE: Java Enterprise Edition -> JEE + APIs (Transactional APIs - Rollback, Commits, Servlets, Persistent APIs)
+- JME: Java Micro (Mobile) Edition -> APIs for Mobile aplications
 
 ## Key Features of Java:
 
 1. Platform Independent:
-    - Bytecode generated from any platform can be run onany platform. Each platform (Windows, Linux, Mac) has its own JVM which interprets the bytecode.
+    - Bytecode generated from any platform can be run on any platform (WORA - Write Once Run Anywhere). Each platform (Windows, Linux, Mac) has its own JVM which interprets the bytecode.
 2. Object Oriented Programming: <br>
     The four main concepts of Object-Oriented programming are:
     - Abstraction, Encapsulation, Inheritance, Polymorphism
@@ -55,7 +72,11 @@ JRE contains JVM.
 
 ## Data Types:
 
+Java is a <u>static-typed</u> (We need to define the type of the variable) and <u>strong-typed</u> (only one type of data can be associated to a given datatype) language.
+
 Java has two categories in which data types are segregated.
+
+Default values are assigned to class [variables](#variables) only.
 
 **Primitive Data Type:** such as boolean, char, int, short, byte, long, float, and double. The Boolean with uppercase B is a wrapper class for the primitive data type boolean in Java.
 
@@ -75,13 +96,52 @@ Java has two categories in which data types are segregated.
 **Why is the Size of char 2 bytes in Java?**
 Unlike languages such as C or C++ that use the ASCII character set, Java uses the Unicode character set to support <span style="color:#777;text-decoration: underline;font-weight: bold">internationalization</span>. Unicode requires more than 8 bits to represent a wide range of characters from different languages, including Latin, Greek, Cyrillic, Chinese, Arabic, and more. As a result, Java uses 2 bytes to store a char, ensuring it can represent any Unicode character.
 
+## Types of Conversion:
+
+1. **Widening/Automatic Conversion:** When we go from lower datatype to higher datatype, it does automatic conversion.
+
+2. **Narrowing/Down Casting/Explicit Conversion:**
+- When we go from higher datatype to lower datatype, we need to type cast the value explicitly.
+- If we try to assign value from higer type to lower type which is out of range for the lower type, we go from begining value of lower datatype in loop
+    - int 127 stored in byte is 127
+    - int 128 stored in byte is -128 (range of byte is -128 to 127)
+    - int 129 stored in byte is -127, and so on.
+
+```Java
+int intVal = 10;
+byte byteVal = (byte) intVal;
+
+System.out.println(byteVal);
+```
+
+3. **Promotion during expression:**
+
+- byte a = 127;
+- byte b = 1;
+- byte c = a + b; // Error
+
+Here, a + b is now promoted (It is done internally) to int as the value of sum has crossed the limit of byte,
+
+We can either capture it in an int variable or we can convert it back to byte and capture it in byte variable,
+
+- int c = a + b;
+- byte c = (byte) (a + b);
+
+Other Case: In an expression is any variable is of higher type then the expression first converts to that type
+
+- double p = 10d;
+- int q = 12;
+- int r = p + q; // Error
+- double r = p + q; // No error
+- int r = (int)(p + q); // No error
+
 ## Variables: 
 
 [Code](./Programs/Variables.java)
 
 1. Local Variables:
     - The scope of local variables exists only within the block in which the variables are declared
-2. Instance Variables:
+2. Instance/Member Variables:
     - As instance variables are declared in a class, these variables are created when an object of the class is created and destroyed when the object is destroyed.
     - Instance variables can be accessed <ins>only by creating objects</ins>.
     - Initialization of an instance variable is not mandatory. Its default value is dependent on the data type of variable. For String it is null, for float it is 0.0f, for int it is 0, for Wrapper classes like Integer it is null, etc.
@@ -90,10 +150,154 @@ Unlike languages such as C or C++ that use the ASCII character set, Java uses th
     - Unlike instance variables, we can only have <ins>one copy</ins> of a static variable per class, irrespective of how many objects we create.
     - Initialization of an static variable is not mandatory.
     - If we access a static variable like an instance variable (through an object), the compiler will show a warning message, which won’t halt the program. The compiler will replace the object name with the class name automatically.
+4. Method Variable:
+5. Constructor Variable:
 
 **Notes:**
 - Static methods and static variables can be accessed directly by any static and non-static method.
 - Non static methods and non static variables can only be accessed by the object of the class.
+
+**How are float and double values are stored in Memory?**
+
+Float stores data in 32 bit IEEE 754 format.
+
+In 32 bits: 1 bit (from left to right) is for signed bit, next 8 bits are for exponent, next 23 bits are mantissa/significant
+
+## Reference Data Types:
+
+Class, String, Interface, Array
+
+What is reference: 
+- new keyword creates a new object in Heap Memory.
+- Object used on left while using new is the reference to that space in Heap Memory. Car car = new Car();
+
+In Java there is no concept of pointer.
+- In Java, `everything is passed by value`. There is no concept of pass by reference.
+- If we pass an Object, the local object of the function also start referring to same object (memory space) in Heap Memory.
+
+[Modify value in function](./Programs/Reference_Data_Type/Student.java)
+
+
+### String
+
+String is a `referenced datatype`. Strings in Java are `immutable`.
+
+**String Pool and String Literal:**
+
+String s1 = "hello"; // hello is the String Literal which will go in the String Pool in Heap Memory.
+
+If we do, String s2 = "hello";
+- It will go in Heap memory and check if "hello" String Literal is present in the heap memory or not. If present then s2 will point to that. If not then create new.
+
+String s3 = new String("hello");
+
+**Important:** Whenever we use the new keyword, it will not be used as a String Literal. It creates an another object inside the Heap Memory which has the word (hello in this case).
+
+Strings are immutable?
+- String s1 = "hello"; // New string literal in string pool if not exists
+- s1 = "newString"; // Point to string literal newString in string pool if exists or create new if doesn't exists already. It does not destroy memory space of string literal hello.
+
+### Arrays:
+
+```Java
+
+int arr[] = new int[2];
+arr[0] = 10;
+arr[1] = 2;
+
+int []arr2 = {2,5,123};
+
+int mat[][] = new int[2][3];
+
+int mat2[][] = {{1,2,3},{2,7,43}};
+
+```
+
+## Wrapper Classes:
+
+For each primitive datatype (int,char,long,float,double,byte,short,boolean) we have a wrapper class (Int,Char,Long,Float,Double,Byte,Short,Boolean).
+
+**Need:**
+- Reference Capability (Change value in a function).
+- The `Collections` framework works on Objects (Reference Datatype) only.
+
+`Autoboxing`: Primitive to Wrapper class
+- int a = 10; Integer a1 = a;
+
+`Unboxing`: Wrapper class to Primitive
+- Integer x = 20; int x1 = x;
+
+
+### Constant Variables:
+
+Using `final` keyword.
+
+## Methods:
+
+[Code](./Programs/Methods.java)
+
+2 types of Methods: 
+1. Predefined Methods: Math.random(), Math.PI()
+2. User Defined Methods: public void main() {}
+    
+Ways to create a method: Instance Methods, Static Methods.
+
+NOTE: Java passes all primitive data types by value.
+
+**<span style="color:skyblue">Static Method VS Non Static Method: [link](./Programs/StaticMethodVsNonStatic.java)</span>**
+
+Static method: This method belongs to the class and can be called without creating an object. [[4](#references)] <br />
+Instance method: This method belongs to an object and requires an object to be called.
+
+|Fetures|Static Method|Non Static Method|
+|----|----|----|
+|Definition|Created using the static keyword and retrieved without creating an object.|Requires an object of its class to be invoked.|
+|Access|<span style="color: red">Access only static variables and methods.<span />|Can access both static and instance members.|
+|this keyword|Cannot use the this keyword within static methods.|Can use the this keyword to refer to the current object.|
+|Override|Does not support runtime polymorphism|Supports runtime polymorphism|
+
+**Static Methods:**
+
+Static Methods cannot be Over-riden with @Override annotaion. We can hide the static method of super class in child class but we cannot use @Override annotation on a static method.
+
+Methods which do not modify the state of the object can be declared static.
+
+**Final Methods:**
+
+Cannot be Overriden. As the final keyword is used as it cannot be changed. If child class cannot change the implementation of the final method, then no use of Overriden.
+
+**Abstract Methods:**
+
+Abstract methods are defined in the Abstract class. Only method declaration is done. Implementation is done in the child class.
+
+[Variable Argument](#variable-arguments-varargs-in-java)
+
+
+## Constructors:
+
+Method in a class can have same name as the class.
+
+Keyword new used while creating an object of a class tell the complier that the program has used a constructor after the new keyword and not a method.
+
+Java implicitely adds a return type of class in constructor. We don't need to explicitly add a return type.
+
+Constructors **cannot be** final, abstract, static. Constructors cannot be defined in Interface.
+
+use of this and super keywords:
+- this refers to the object.
+- super refers to parent class
+
+[Chaining through this keyword](./Programs/Constructors/Chaining/Calculations.java)
+
+If you write a no-argument constructor and you don’t explicitly call a superclass constructor, the compiler **automatically inserts a call to super()**; as the first statement.
+
+Why?
+- Every Java class (except Object) has a superclass.
+- Before initializing the current class, the superclass must be initialized.
+- super(); calls the no-arg constructor of the immediate superclass.
+
+If there are no no-arg constructors defined in the parent class, we need to explicitly call super() with required arguments in the child class. 
+- [Chaining through super keyword](./Programs/Constructors/Chaining/SuperExample2.java)
 
 ## Operators:
 
@@ -166,30 +370,6 @@ Decision Making Statements: if, if-else, switch, break, continue, jump (Three Ju
 [Code](./Programs/Loops.java)
 
 Type of Loops: for loop, while loop, do-while loop
-
-## Methods: 
-
-[Code](./Programs/Methods.java)
-
-2 types of Methods: 
-1. Predefined Methods: Math.random(), Math.PI()
-2. User Defined Methods: public void main() {}
-    
-Ways to create a method: Instance Methods, Static Methods.
-
-NOTE: Java passes all primitive data types by value.
-
-**<span style="color:skyblue">Static Method VS Non Static Method: [link](./Programs/StaticMethodVsNonStatic.java)</span>**
-
-Static method: This method belongs to the class and can be called without creating an object. [[4](#references)] <br />
-Instance method: This method belongs to an object and requires an object to be called.
-
-|Fetures|Static Method|Non Static Method|
-|----|----|----|
-|Definition|Created using the static keyword and retrieved without creating an object.|Requires an object of its class to be invoked.|
-|Access|<span style="color: red">Access only static variables and methods.<span />|Can access both static and instance members.|
-|this keyword|Cannot use the this keyword within static methods.|Can use the this keyword to refer to the current object.|
-|Override|Does not support runtime polymorphism|Supports runtime polymorphism|
 
 
 ## Arrays:
@@ -387,13 +567,13 @@ void method2(int... args, string str) {}
 
 Object class in Java is present in `java.lang` package [[3](#references)]. Every class in Java is <u>directly or indirectly derived from the Object class</u>. If a class does not extend any other class then it is a direct child class of the Java Object class and if it extends another class then it is indirectly derived. 
 
-The Object class provides several methods such as `toString(),equals(), hashCode(), and many others`. <br />
+The Object class provides several methods such as `toString(), equals(), hashCode(), and many others`. <br />
 List of methods from Object class: toString(); hashCode(); equals(Object obj); finalize(); getClass(); clone(); wait(), notify() notifyAll() (Concurrency methods) <br />
 We can override the methods of Object class in our defined class.
 
 ### Multiple Classes in one file
 [code file](./Programs/MultipleClasses.java) <br />
-- At most one public class in Java. 
+- At most `one public class` in Java. 
 - If there is one public class then the <u>name of that class must be same as the name of the file</u>.
 
 - Multiple classes in same file can have their own main method. 
@@ -420,6 +600,8 @@ java Test
 ```
 
 ## Command Line Arguments:
+
+Run Java code using terminal:
 
 [Code](./Programs/CommandLineArguments.java)
 
