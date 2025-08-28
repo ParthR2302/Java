@@ -4,9 +4,7 @@ public class Student {
     public static void main(String[] args) {
 
         int val = 10;
-
         Employee employee = new Employee();
-
         employee.setEmployeeId(10);
 
         System.out.println("Employee ID: " + employee.getEmployeeId() + " Val: " + val); // 10 10

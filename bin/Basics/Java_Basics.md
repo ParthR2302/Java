@@ -20,6 +20,7 @@
 - [Methods](#methods)
 - [Arrays](#arrays) - Important topic (Includes 1D array, 2D array, array of objects, return array from methods, Cloning array)
 - [Variable Arguments](#variable-arguments-varargs-in-java)
+- [Java Memory Management and Garbage Collector](#java-memory-management-and-garbage-collector)
 
 <br />
 
@@ -191,27 +192,11 @@ If we do, String s2 = "hello";
 
 String s3 = new String("hello");
 
-**Important:** Whenever we use the new keyword, it will not be used as a String Literal. It creates an another object inside the Heap Memory which has the word (hello in this case).
+**<span style="color:skyblue">Important:</span>** Whenever we use the new keyword, it will not be used as a String Literal. It creates an another object inside the Heap Memory which has the word (hello in this case).
 
 Strings are immutable?
 - String s1 = "hello"; // New string literal in string pool if not exists
 - s1 = "newString"; // Point to string literal newString in string pool if exists or create new if doesn't exists already. It does not destroy memory space of string literal hello.
-
-### Arrays:
-
-```Java
-
-int arr[] = new int[2];
-arr[0] = 10;
-arr[1] = 2;
-
-int []arr2 = {2,5,123};
-
-int mat[][] = new int[2][3];
-
-int mat2[][] = {{1,2,3},{2,7,43}};
-
-```
 
 ## Wrapper Classes:
 
@@ -231,46 +216,6 @@ For each primitive datatype (int,char,long,float,double,byte,short,boolean) we h
 ### Constant Variables:
 
 Using `final` keyword.
-
-## Methods:
-
-[Code](./Programs/Methods.java)
-
-2 types of Methods: 
-1. Predefined Methods: Math.random(), Math.PI()
-2. User Defined Methods: public void main() {}
-    
-Ways to create a method: Instance Methods, Static Methods.
-
-NOTE: Java passes all primitive data types by value.
-
-**<span style="color:skyblue">Static Method VS Non Static Method: [link](./Programs/StaticMethodVsNonStatic.java)</span>**
-
-Static method: This method belongs to the class and can be called without creating an object. [[4](#references)] <br />
-Instance method: This method belongs to an object and requires an object to be called.
-
-|Fetures|Static Method|Non Static Method|
-|----|----|----|
-|Definition|Created using the static keyword and retrieved without creating an object.|Requires an object of its class to be invoked.|
-|Access|<span style="color: red">Access only static variables and methods.<span />|Can access both static and instance members.|
-|this keyword|Cannot use the this keyword within static methods.|Can use the this keyword to refer to the current object.|
-|Override|Does not support runtime polymorphism|Supports runtime polymorphism|
-
-**Static Methods:**
-
-Static Methods cannot be Over-riden with @Override annotaion. We can hide the static method of super class in child class but we cannot use @Override annotation on a static method.
-
-Methods which do not modify the state of the object can be declared static.
-
-**Final Methods:**
-
-Cannot be Overriden. As the final keyword is used as it cannot be changed. If child class cannot change the implementation of the final method, then no use of Overriden.
-
-**Abstract Methods:**
-
-Abstract methods are defined in the Abstract class. Only method declaration is done. Implementation is done in the child class.
-
-[Variable Argument](#variable-arguments-varargs-in-java)
 
 
 ## Constructors:
@@ -371,8 +316,59 @@ Decision Making Statements: if, if-else, switch, break, continue, jump (Three Ju
 
 Type of Loops: for loop, while loop, do-while loop
 
+## Methods:
+
+[Code](./Programs/Methods.java)
+
+2 types of Methods: 
+1. Predefined Methods: Math.random(), Math.PI()
+2. User Defined Methods: public void main() {}
+    
+Ways to create a method: Instance Methods, Static Methods.
+
+NOTE: Java passes all primitive data types by value.
+
+**<span style="color:skyblue">Static Method VS Non Static Method: [link](./Programs/StaticMethodVsNonStatic.java)</span>**
+
+Static method: This method belongs to the class and can be called without creating an object. [[4](#references)] <br />
+Instance method: This method belongs to an object and requires an object to be called.
+
+|Fetures|Static Method|Non Static Method|
+|----|----|----|
+|Definition|Created using the static keyword and retrieved without creating an object.|Requires an object of its class to be invoked.|
+|Access|<span style="color: red">Access only static variables and methods.<span />|Can access both static and instance members.|
+|this keyword|Cannot use the this keyword within static methods.|Can use the this keyword to refer to the current object.|
+|Override|Does not support runtime polymorphism|Supports runtime polymorphism|
+
+**Static Methods:**
+
+Static Methods cannot be Over-riden with @Override annotaion. We can hide the static method of super class in child class but we cannot use @Override annotation on a static method.
+
+Methods which do not modify the state of the object can be declared static.
+
+**Final Methods:**
+
+Cannot be Overriden. As the final keyword is used as it cannot be changed. If child class cannot change the implementation of the final method, then no use of Overriden.
+
+**Abstract Methods:**
+
+Abstract methods are defined in the Abstract class. Only method declaration is done. Implementation is done in the child class.
+
+[Variable Argument](#variable-arguments-varargs-in-java)
 
 ## Arrays:
+
+```Java
+int arr[] = new int[2];
+arr[0] = 10;
+arr[1] = 2;
+
+int []arr2 = {2,5,123};
+
+int mat[][] = new int[2][3];
+
+int mat2[][] = {{1,2,3},{2,7,43}};
+```
 
 [Code](./Programs/Arrays.java)
 
@@ -550,6 +546,104 @@ void method2(int... args, string str) {}
 2. Before JDK 5, variable length arguments could be handled in two ways: One was using overloading, other was using array argument.
 3. There can be only one variable argument in a method.
 4. Variable argument (Varargs) must be the last argument.
+
+
+## Java Memory Management and Garbage Collector:
+
+2 Types of Memory: Stack and Heap.
+
+Both of them are created by JVM and stored in RAM.
+
+### Stack Memory:
+
+- Stores temporary variables and separate memroy block for methods.
+- Store primitive datatype.
+- Store reference of the heap objects.
+    - Strong reference
+    - Weak reference
+        - Soft reference
+- `Each thread has its own Stack memory`. They share a common heap memory.
+- Variable within a Scope is only visible and as soon as any variable goes out of the scope, it gets deleted from the stack (in LIFO order).
+- Throws "java.lang.StackOverflowError" when it goes full.
+
+
+
+### Heap Memory:
+- Stores Object.
+- There is no order of allocating the memory.
+- `Garbage Collector` is used to delete the unreferenced objects from the heap.
+    - Mark and Sweep Algorithm:
+    - Types of GC:
+        - Single GC, Parallel GC, CMS (Concurrent Mark Sweep), G1
+- Heap memory is shared with all the threads
+- Heap also contains the String Pool
+- "Java.lang.OutofMemoryError"
+- Heap memory is further divided into,
+    - Youn Generation (Minor GC happen here)
+        - Eden, Survivors (S0, S1)
+    - Old/Tenure Generation (Major GC happen here)
+- Permanent Generation (Now known as metaspace)
+    - PremGen was a part of Heap and was not expendible, Metaspace is outside of heap and is expendible.
+
+**<span style="color:skyblue">IMPORTANT</span>** How does Heap memory work?
+- New Objects are stored in `Eden` (Eden, Szero and S1 are present in `New Generation` part of Heap),
+- Mark and Sweep algo will first mark non-referenced objects. Then delete those objects.
+    - Put the remaining (`Survivor`) objects into S0 or S1 (Alternatively) with age count. (Lets asume S1 in this case)
+        - At one point, after GC is ran, Eden will be empty and one of Survivors would be having alive objects with age count.
+    - In second iteration of GC, if new objects are added in between then they are present in Eden. 
+        - Mark and sweep will occur, Objects will be deleted, remaining objects (From Eden and S1) are moved to S0 with increamented/craeted age count.
+- Age count `threshold`:
+    - If Age count of an object crosses threshold, it is moved to `Old Generation` part of the Heap. Where Major GC happen. 
+    - Major GC is not ran frequnently as minor GC.
+
+**Metaspace:**
+- This is outside of Heap memory.
+- It stored `class variables`, class metadata, constants
+
+### Garbage Collector:
+
+- Mark and Sweep algo
+- Mark and Sweep with Compact memory
+    - It will bring the taken memory in heap together. 
+    - Lets say obj1 is stored at location 1 and obj2 is stored at location 3 to 5.
+        - With compact memory, GC will bring obj2 to location 2, so that we can have empty spaces in sequential and continuous manner.
+
+**When GC starts, all the application threads will get paused.**
+
+Versions of GC:
+- Serial
+    - Works on only one thread. Time consuming.
+- Parallel
+    - Depending upon the cores, thread(s) are assinged to GC task.
+- Concurrent Mark and Sweep (CMS)
+    - While application threads are working, concurrently GC threads are also working. (Application threads are not paused - JVM doesn't give 100% guarantee)
+    - No Memory compaction happens.
+- G1
+    - Better version of CMS. Gives Compaction ability.
+
+**Notes:**
+- If there is a reference variable in Stack memory which is pointing to an Object in heap memory. If we clear the stack memory (One reason: Scope is ended for stack memory block - Method is finished), 
+    - We delete the reference variable from Stack. But Object in heap is deleted by the Garbage Collector.
+    - Garbage Collector `runs Periodically`. JVM controls when to run the GC.
+        - Using System.gc() method. There is no guarantee that using this command, JVM will run the GC. Running GC depend totally on JVM
+        - Hence, it is called `Automatic Memroy Management`.
+
+
+
+
+```Java
+// Strong Reference:
+Person person = new Person();
+
+// Weak Reference (Using WeakReference class):
+WeakReference<Person> obj = new WeakReference<Person>(new Person());
+
+// Soft Reference:
+// It is a type of WeakReference, but it will tell GC to destroy the object only if it is very very urgent.
+// If there is no more space in heap.
+```
+
+- GC will not destroy the Object in heap if there is a Strong Reference present, but it will delete the object if there is only a Weak Reference present in Stack memory.
 
 
 
