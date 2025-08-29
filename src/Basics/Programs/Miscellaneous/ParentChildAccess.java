@@ -34,11 +34,13 @@ public class ParentChildAccess {
         Vehicle car = new Car();
 
         car.run();
+        System.out.println(car.getClass());
         // car.carMethod(); // Error, as the type of the object is of Vehicle.
         // Vehicle is either an interface or parent class which does not have carMethod() defined in it
 
         Parent child = new Child();
         child.parentMethod();
+        System.out.println(child.getClass());
         // child.childMethod(); // Error. Same reason as Interface case
     }
 }

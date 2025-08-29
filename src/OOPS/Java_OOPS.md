@@ -13,6 +13,7 @@
 - [Abstraction](#abstraction)
 - [Interface](#interface)
 - [Enums](#enums)
+- [Java Classes](#java-classes)
 
 <br />
 
@@ -248,10 +249,67 @@ An enum can, just like a class, have attributes and methods. The only difference
 An enum cannot be used to create objects, and it cannot extend other classes (but it can implement interfaces).
 
 
+## Java Classes:
+
+Types of Classes in Java:
+
+### Concrete Class:
+
+### Abstract Class:
+
+- Can be 0-100% Abstraction
+- Abstract class can inherit other abstract classes.
+  - The child abstract class can either give implementation to the abstract methods of parent class, can either add a new abstract/concreate methods and can either leave the abstract methods from parent class (Don't provide implementation).
+- Cannot create an Object of abstract class.
+- If a concrete class extends an abstract class, we can store the reference of that concrete class object in the parent abstract class.
+
+### Super Class:
+
+- In Java, there is one class called Object, which is the Parent class of all the classes that are not inheriting other classes.
 
 
+### Nested Class: IMPORTANT
+
+Class within another class.
+
+When to use? If we know that the class will only be used by one other class, instead of creating a new file, we can add that class to the other class. Also helps us to group logically related classes in one file.
+
+Scope: Its scope would be same as the parent class's scope.
+
+2 Types:
+1. Static Nested Class
+2. Non-Static Nested Class (Inner Class)
+    - Member Inner Class
+    - Local Inner Class
+    - Anonymous Inner Class
+
+`IMPORTANT:` Outerclasses have 2 Access Specifiers: public and default ( package-private / no-keyword provided).
+  - Like methods, Inner Classes can have private and protected access modifiers as well.
+
+```Java
+// Static Nested Class
+OuterClass.DefaultStaticNestedClass obj = new OuterClass.DefaultStaticNestedClass();
+
+// Non-Static Nested Class
+OuterClass1 obj = new OuterClass1();
+OuterClass1.DefaultNonStaticNestedClass innerObj = obj.new DefaultNonStaticNestedClass();
+```
+
+[Static Nested Class](./Programs/TypeOfClasses/StaticNestedClass.java) | [Non Static Nested Class - Member, Local and Anonymous Inner Classes](./Programs/TypeOfClasses/NonStaticNestedClasses.java)
 
 
+Local Inner Class:
+  - Inner class which is inside a block - if, loop, method, etc...
+      - Cannot be declared as private, protected or public. Only Default is allowed
+
+[Inheritance in Nested Class](./Programs/TypeOfClasses/InheritanceInNestedClass.java)
+
+Anonymous Inner Class:
+- An Inner class without a name is called an Anonymous Inner Class.
+- When to use? When we want to override the behaviour of a method without even creating any subclass. [link](./Programs/TypeOfClasses/NonStaticNestedClasses.java)
+- 2 things happen behind the scene:
+  - Sub class is created, name decided by the compiler.
+  - Creates an Object of sub clas and assign its reference to object audiCarObj
 
 
 

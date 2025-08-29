@@ -25,6 +25,7 @@
 <br />
 
 - [**IMPORTANT**: Additional Material](#miscellaneous-material)
+- [Imporant Points](#important-points)
 - [References](#references)
 
 ## What is JDK, JVM and JRE?
@@ -243,6 +244,8 @@ Why?
 
 If there are no no-arg constructors defined in the parent class, we need to explicitly call super() with required arguments in the child class. 
 - [Chaining through super keyword](./Programs/Constructors/Chaining/SuperExample2.java)
+
+`Note:` If a class is a child of some parent class and we create an object of the child class using new Child(); it will first call the constructor of the parent class and then the child class [link](../OOPS/Programs/Miscellaneous/ParentChildConstructor.java).
 
 ## Operators:
 
@@ -598,7 +601,7 @@ Both of them are created by JVM and stored in RAM.
 
 **Metaspace:**
 - This is outside of Heap memory.
-- It stored `class variables`, class metadata, constants
+- It stores `class variables`, class metadata, constants
 
 ### Garbage Collector:
 
@@ -699,6 +702,13 @@ Run Java code using terminal:
 
 [Code](./Programs/CommandLineArguments.java)
 
+
+## Important Points:
+
+- Program Flow: Java Program -> Compiler -> Byte Code -> JVM -> Machine Code -> CPU -> Output
+- In Java, `everything is passed by value`. There is no concept of pass by reference. Objects are passed with same reference.
+    - The `Collections` framework works on Objects (Reference Datatype) only.
+- If a class is a child of some parent class and we create an object of the child class using new Child(); it will first call the constructor of the parent class and then the child class [link](../OOPS/Programs/Miscellaneous/ParentChildConstructor.java).
 
 
 
