@@ -17,6 +17,7 @@
 
 <br />
 
+- [Important Points](#important-points)
 - [References](#references)
 
 ## Abstract Class and Methods:
@@ -268,7 +269,7 @@ Types of Classes in Java:
 - In Java, there is one class called Object, which is the Parent class of all the classes that are not inheriting other classes.
 
 
-### Nested Class: IMPORTANT
+### Nested Class:
 
 Class within another class.
 
@@ -311,7 +312,42 @@ Anonymous Inner Class:
   - Sub class is created, name decided by the compiler.
   - Creates an Object of sub clas and assign its reference to object audiCarObj
 
+### Generic Classes: IMPORTANT
 
+[Code](./Programs/TypeOfClasses/GenericClass.java)
+
+Using <T> with class. We can use any keyword in place of T.
+T can be replaced with any `non-primitive objects`.
+
+We can have inheritance in Generic class 
+- Parent Class is Generic: Child class can either be Non-Generic or Generic
+- Parent Class is Non-Generic and Child class is Generic.
+
+Ther can be more than one Generic Types in a class. class Class<A, B> {}
+
+We can make `Generic Methods` as well. We can have generic methods inside both Generic and Non-Generic classes.
+- Before the return type we need to define the type parameters.
+
+We can use Raw types.
+
+We can also have `Bounded Generics` classes.
+  - There are 2 types: Upper Bound and Multi Bound
+
+### Wild Cards:
+
+Three types of `wild cards`:
+- Upper Bound Wild Cards: <? extends UpperBoundClassName> i.e. class name and below
+- Lower Bound Wild Cards: <? supper LowerBoundClassName> i.e. class name and above
+- Unbounded Wild Cards: <?> only you can read
+
+
+
+
+
+
+
+
+## Important Points
 
 ## References
 
