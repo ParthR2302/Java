@@ -709,7 +709,9 @@ Run Java code using terminal:
 - In Java, `everything is passed by value`. There is no concept of pass by reference. Objects are passed with same reference.
     - The `Collections` framework works on Objects (Reference Datatype) only.
 - If a class is a child of some parent class and we create an object of the child class using new Child(); it will first call the constructor of the parent class and then the child class [link](../OOPS/Programs/Miscellaneous/ParentChildConstructor.java).
-
+- As soon as the application starts, all the static variables are pre-loaded into the memory.
+- Nested classes don't get loaded at the time of application start.
+- For a volatile variable, any read and write operations happen through memory instead from the cache.
 
 
 

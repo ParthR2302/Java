@@ -252,7 +252,7 @@ An enum cannot be used to create objects, and it cannot extend other classes (bu
 
 ## Java Classes:
 
-[Conncrete Class](#concrete-class) | [Abstract Class](#abstract-class) | [Super Class](#super-class) | [Nested Class](#nested-class) | [Generic Class](#wild-cards) | [Wild Cards](#wild-cards) | [POJO Class](#pojo-class) |
+[Concrete Class](#concrete-class) | [Abstract Class](#abstract-class) | [Super Class](#super-class) | [Nested Class](#nested-class) | [Generic Class](#wild-cards) | [Wild Cards](#wild-cards) | [POJO Class](#pojo-class) | [Enum Class](#enum-class) | [Final Class](#final-class) | [Singleton Class](#singleton-class) | [Immutable Class](#immutable-class) | [Wrapper Class](#wrapper-class) 
 
 Types of Classes in Java:
 
@@ -370,6 +370,49 @@ In a [custom value enum](./Programs/TypeOfClasses/Enums/CustomValueEnum.java), W
 ### Final Class:
 
 It cannot be inherited.
+
+### Singleton Class:
+
+Its objective is to create `one and only one object`. E.g. DB Connection, etc.
+
+Different ways of creating singleton class:
+- [Eager Initialization](./Programs/TypeOfClasses/SingletonClasses/EagerInitialization.java)
+
+- [Lazy Initialization](./Programs/TypeOfClasses/SingletonClasses/LazyInitialization.java)
+  - To overcome the problem of eager initialization of static object being loaded into the memory when application starts.
+  - **Disadvantage:** What if 2 threads come in parallel and object is not craeted. They would create an Object independently and there would be 2 objects created.
+
+- [Synchronization Block](./Programs/TypeOfClasses/SingletonClasses/SynchronizationBlock.java)
+  - To overcome the 2 thread problem of lazy initialization. How? Make the getInstance() method synchronized.
+  - **Disadvantage:** Putting synchronized at method level make it a bit slow.
+
+- [Double Check Lock](./Programs/TypeOfClasses/SingletonClasses/DoubleCheckLocking.java) (there is memory issue, resolved through volatile instance variable)
+  - To overcome the slowness issue of synchronization method.
+  - Instead of making the entire method synchronized, make the internal if block of null case synchronized.
+  - Volatile is used to solve the issue of L1 cache sync up with memory at core level in CPU, and the issue of reordering.
+  - For a volatile variable, any read and write operations happen through memory instead from the cache.
+
+- [Bill Pugh Solution](./Programs/TypeOfClasses/SingletonClasses/BillPugh.java)
+  - Slight variation in the Eager Initialization method
+  - Initialization is wrapped inside a nested class. `Why?` Nested classes don't get loaded at the time of application start.
+
+
+- Enum Singleton
+  - Per JVM only one snapshot of enum is present.
+
+
+### Immutable Class:
+
+[Code](./Programs/TypeOfClasses/ImmutableClasses.java)
+
+State of immutable class cannot be changed.
+- We cannot change the value of the object once it is created.
+- Declare class as final so that it cannot be extended
+- All class member should be private, no direct access.
+- Class member are initialzed only using class Constructor. Hence, no setter methods, only getter methods
+- Returns the copy of the Object
+
+### Wrapper Class:
 
 ## Important Points
 
