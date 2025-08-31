@@ -252,6 +252,8 @@ An enum cannot be used to create objects, and it cannot extend other classes (bu
 
 ## Java Classes:
 
+[Conncrete Class](#concrete-class) | [Abstract Class](#abstract-class) | [Super Class](#super-class) | [Nested Class](#nested-class) | [Generic Class](#wild-cards) | [Wild Cards](#wild-cards) | [POJO Class](#pojo-class) |
+
 Types of Classes in Java:
 
 ### Concrete Class:
@@ -312,7 +314,7 @@ Anonymous Inner Class:
   - Sub class is created, name decided by the compiler.
   - Creates an Object of sub clas and assign its reference to object audiCarObj
 
-### Generic Classes: IMPORTANT
+### Generic Class: IMPORTANT
 
 [Code](./Programs/TypeOfClasses/GenericClass.java)
 
@@ -340,12 +342,34 @@ Three types of `wild cards`:
 - Lower Bound Wild Cards: <? supper LowerBoundClassName> i.e. class name and above
 - Unbounded Wild Cards: <?> only you can read
 
+### POJO Class:
+
+Plain Old Java Objects.
+
+Usecases: Map the incoming request object to a POJO. Between Repository and DB, make a POJO to imitate DB.
 
 
+### Enum Class:
 
+[Code](./Programs/TypeOfClasses/Enums/Main.java)
 
+- Collection of Constants. Variables are static and final implicitly.
+- Its constructor is alway private, hence we cannot initiated.
+- It cannot extend any class as it internally extends java.lang.Enum class. It can implement interfaces.
+- No other class can extend enums.
+- It can have abstract methods, and all the constants should implement that abstract method.
 
+In a [custom value enum](./Programs/TypeOfClasses/Enums/CustomValueEnum.java), Wathever variables, methods and Constructors we define in this class are for each enum constants (MONDAY,...,SUNDAY).
 
+[Method Override By Constant:](./Programs/TypeOfClasses/Enums/MethodOverrideByConstant.java) Although a non-static method in enum seems like a common methods for each constants, Each constants have their own instance of this method. We can override this method for each Constants.
+
+[Enum with abstract method:](./Programs/TypeOfClasses/Enums/EnumWithAbstractMethod.java) All the constants have to override the abstract method and provide their own implementation.
+
+[Enum Implemnts Interface](./Programs/TypeOfClasses/Enums/EnumImplementsInterface.java)
+
+### Final Class:
+
+It cannot be inherited.
 
 ## Important Points
 
