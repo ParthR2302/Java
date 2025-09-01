@@ -1,4 +1,4 @@
-package OOPS.Programs;
+package OOPS.Programs.Interface;
 
 // Interface
 interface Animal1 {
@@ -18,7 +18,7 @@ interface Animal1 {
     }
   }
   
-  public class Interface {
+  public class InterfaceClass {
     public static void main(String[] args) {
       Pig myPig = new Pig();  // Create a Pig object
       myPig.animalSound();

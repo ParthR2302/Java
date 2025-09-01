@@ -14,6 +14,7 @@
 - [Interface](#interface)
 - [Enums](#enums)
 - [Java Classes](#java-classes)
+  - [Concrete Class](#concrete-class) | [Abstract Class](#abstract-class) | [Super Class](#super-class) | [Nested Class](#nested-class) | [Generic Class](#wild-cards) | [Wild Cards](#wild-cards) | [POJO Class](#pojo-class) | [Enum Class](#enum-class) | [Final Class](#final-class) | [Singleton Class](#singleton-class) | [Immutable Class](#immutable-class) | [Wrapper Class](#wrapper-class) 
 
 <br />
 
@@ -208,7 +209,7 @@ Refer to [Abstraction](#abstract-class-and-methods)
 
 ## Interface:
 
-[Code](./Programs/Interface.java)
+[Code](./Programs/Interface/InterfaceClass.java)
 
 Another way to achieve <ins>abstraction</ins> in Java, is with interfaces.
 
@@ -216,14 +217,37 @@ An `interface` is a completely **"abstract class"** that is used to group relate
 
 To access the interface methods, the interface must be "implemented" (kinda like inherited) by another class with the `implements` keyword (instead of `extends`). The body of the interface method is provided by the "implement" class:
 
+**Need of interface:**
+- Abstraction
+- Polymorphism
+  - Ineterface can be used as a datatype. We cannot create an object of an interface, but it can hold reference of all the objects that implement it. `At runtime`, it decides which method needs to be invoked.
+  - Bird interface. Crow implements Bird, Eagle implements Bird. Bird eagle = new Eagle();
+- Multiple Inheritance
+
 **Notes:**
 
 - Like abstract classes, interfaces cannot be used to create objects (in the example above, it is not possible to create an "Animal" object in the MyMainClass)
 - Interface methods do not have a body - the body is provided by the "implement" class
 - On implementation of an interface, you must override all of its methods
-- Interface methods are by default abstract and public
-- Interface attributes are by default public, static and final
+- Interface methods are **by default** abstract and public. Method cannot be declared as final.
+- Interface attributes are **by default** public, static and final
 - An interface cannot contain a constructor (as it cannot be used to create objects)
+
+- private and protected modifiers are not allowed while creating interface.
+- Overriding method cannot have more restrict access specifier. If method is public in interface, it cannot be private, protected in implementing class.
+- If an abstract class implements an interface, it is **not forced** to override all the methods.
+
+Nested Interface:
+- Nested interface declared within another interface.
+- Nested interface declared within a class.
+
+Java-8 and Java-9 features on Interface:
+
+Java-8: [Default methods](./Programs/Interface/DefaultMethodsInInterface.java), [Static methods](./Programs/Interface/StaticMethodsInInterface.java), Functional Interface and Lamda Expressions.
+
+Java-9: [Private methods and Private Static methods](./Programs/Interface/PrivateAndPrivateStaticMethodsInInterface.java)
+
+- stream() is a Default method in Collection Interface introduced in Java-8.
 
 
 ## Enums:
@@ -303,7 +327,7 @@ OuterClass1.DefaultNonStaticNestedClass innerObj = obj.new DefaultNonStaticNeste
 
 Local Inner Class:
   - Inner class which is inside a block - if, loop, method, etc...
-      - Cannot be declared as private, protected or public. Only Default is allowed
+      - `Cannot be declared as private`, protected or public. Only Default is allowed
 
 [Inheritance in Nested Class](./Programs/TypeOfClasses/InheritanceInNestedClass.java)
 
