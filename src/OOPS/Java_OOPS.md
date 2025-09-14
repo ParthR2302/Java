@@ -14,7 +14,7 @@
 - [Interface](#interface)
 - [Enums](#enums)
 - [Java Classes](#java-classes)
-  - [Concrete Class](#concrete-class) | [Abstract Class](#abstract-class) | [Super Class](#super-class) | [Nested Class](#nested-class) | [Generic Class](#wild-cards) | [Wild Cards](#wild-cards) | [POJO Class](#pojo-class) | [Enum Class](#enum-class) | [Final Class](#final-class) | [Singleton Class](#singleton-class) | [Immutable Class](#immutable-class) | [Wrapper Class](#wrapper-class) 
+  - [Concrete Class](#concrete-class) | [Abstract Class](#abstract-class) | [Super Class](#super-class) | [Nested Class](#nested-class) | [Generic Class](#wild-cards) | [Wild Cards](#wild-cards) | [POJO Class](#pojo-class) | [Enum Class](#enum-class) | [Final Class](#final-class) | [Singleton Class - IMPORTANT](#singleton-class) | [Immutable Class](#immutable-class) | [Wrapper Class](#wrapper-class) 
 - [Functional Interface and Lambda Expressions](#functional-interface-and-lambda-expressions)
 
 <br />
@@ -350,7 +350,7 @@ We can have inheritance in Generic class
 - Parent Class is Generic: Child class can either be Non-Generic or Generic
 - Parent Class is Non-Generic and Child class is Generic.
 
-Ther can be more than one Generic Types in a class. class Class<A, B> {}
+There can be more than one Generic Types in a class. class Class<A, B> {}
 
 We can make `Generic Methods` as well. We can have generic methods inside both Generic and Non-Generic classes.
 - Before the return type we need to define the type parameters.
@@ -397,6 +397,8 @@ In a [custom value enum](./Programs/TypeOfClasses/Enums/CustomValueEnum.java), W
 It cannot be inherited.
 
 ### Singleton Class:
+
+**IMPORTANT**
 
 Its objective is to create `one and only one object`. E.g. DB Connection, etc.
 
@@ -449,7 +451,7 @@ If an interface contains `only one abstract method`, then the interface is know 
 
 @FunctionalInterface keyword can be used at the top of class (Optional). This restricts the Interface to have only one method.
 
-Functional Interface can contain a default, static, Object class methods along with one abstract method.
+Functional Interface can contain a `default, static, Object class` methods along with one abstract method.
 
 Different Ways to Implement functional Interface: [Code](./Programs/FunctionalInterfaces/ImplementFunctioanlInterface.java)
 1. Using "implements"
@@ -462,7 +464,7 @@ Lambda Expression is a way to implementing Functional Interface.
 
 ### Type of Functional Interface:
 
-There are four types. They are inbuilt.
+There are four types. They are inbuilt. [code](./Programs/FunctionalInterfaces/TypeOfFunctionalInterfaces.java)
 
 All four are present inside java.util.function; package.
 
@@ -485,6 +487,7 @@ If we have any requirement apart from above four, we can write our own functiona
 
 1. Functional Interface extends Interface
 2. Interface extends Functional Interface
+3. Functional Interface extends other Functional Interface.
 
 
 ## References

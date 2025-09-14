@@ -21,6 +21,7 @@
 - [Arrays](#arrays) - Important topic (Includes 1D array, 2D array, array of objects, return array from methods, Cloning array)
 - [Variable Arguments](#variable-arguments-varargs-in-java)
 - [Java Memory Management and Garbage Collector](#java-memory-management-and-garbage-collector)
+- [Reflection](#reflection)
 
 <br />
 
@@ -649,6 +650,48 @@ WeakReference<Person> obj = new WeakReference<Person>(new Person());
 - GC will not destroy the Object in heap if there is a Strong Reference present, but it will delete the object if there is only a Weak Reference present in Stack memory.
 
 
+## Reflection:
+
+Used to examine methods, classes, fields, interface at `runtime` and also provides the capability to `change the behaviour` of a class.
+
+**How to do reflection of classes?**
+
+[Code](./Programs/Reflection/ReflectionClass.java)
+
+To reflect a class, we first need to get an object of class "Class".
+- instance of Class represents classes at runtime.
+- JVM creates one Class Object for each of the classes that are loaded at runtime. It has metadata information about the particular class, like its methods, fields, constructors, etc.
+
+How to get a particular class Class object?
+1. Using forName() method
+2. Using .class
+3. Using getClass() method
+
+```Java
+Class birdClass1 = Class.forName("Bird");
+
+Class birdClass2 = Bird.class;
+
+Bird birdObj = new Bird();
+Class birdClass3 = birdObj.getClass();
+```
+
+**Things to do with reflection:**
+- Reflection of Class
+- Reflection of Methods
+- Invoking the methods using Reflection
+- Reflection of Fields
+- Set the value of fields:
+    - Public fields
+    - Private fields - setAccessible(true). Important step. It breaks encapsulation
+- Reflection of a constructor - It breaks singlton
+
+Notes: 
+- Through reflection we can access and set the value of a private field of a class. It `breaks the rule of encapsulation`.
+- Relflection of a constructor. It `breaks singlton`.
+- Relflection is `not recommended` to use.
+    - It breaks OOPS concepts.
+    - It is slow.
 
 
 
