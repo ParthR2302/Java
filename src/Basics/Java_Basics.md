@@ -22,6 +22,7 @@
 - [Variable Arguments](#variable-arguments-varargs-in-java)
 - [Java Memory Management and Garbage Collector](#java-memory-management-and-garbage-collector)
 - [Reflection](#reflection)
+- [Annotations](#annotations)
 
 <br />
 
@@ -652,7 +653,7 @@ WeakReference<Person> obj = new WeakReference<Person>(new Person());
 
 ## Reflection:
 
-Used to examine methods, classes, fields, interface at `runtime` and also provides the capability to `change the behaviour` of a class.
+Used to examine methods, classes, fields, interface at `runtime` and also provides the capability to `change the behaviour` of a class. Also, used to access the metadata of a class.
 
 **How to do reflection of classes?**
 
@@ -692,6 +693,87 @@ Notes:
 - Relflection is `not recommended` to use.
     - It breaks OOPS concepts.
     - It is slow.
+
+
+## Annotations: IMPORTANT
+
+It is kind of adding Metadata to Java Code. It's usage is optional. 
+
+We can use this metadata at run time and add certain logic in our code if wanted.
+
+Type of Annotations: `Pre-defined, Custom`.
+- In Pre-defined Annotations there are: Annotations `used on Annotations` (Meta-Annotations), Annotations `used on Java Code`.
+
+
+**Pre-Defined Annotations:**
+- @Deprecated
+    - Compiler shows warning.
+    - Can be used of Constructor, Field, Local Variable, Method, Package, Parameter, Type (Class, Enum, Interface).
+- @Override
+    - Method must be present in parent. Used over methods
+- @SupressWarnings
+    - Tell compiler to Ignore any Compile time warning
+    - Like @SupressWarnings("deprecation"), @SupressWarnings("unused"), @SupressWarnings("all"). Used over class or methods.
+- @FunctionalInterface
+    - Can be applied over Type
+- @SafeVararg
+    - Used to Supress "Heap pollution warning".
+        - Heap pollution: Object of one type (Example String), storing the reference of another type object (Example Integer).
+    - Can only be used over static or final methods that too the method must have vararg in the parameter.
+    - In Java 9, we can also use it on private methods.
+
+**Meta-Annotations:**
+- @Target
+    - It will restrict where to use the annotation. Either at Method, Constructor, Field or a combination of these.
+    - Possible element types: Type, Field, Method, Parameter, Constructor, Local Variable, Annotation Type, Package, Type Parameter (Allows to apply on generic types), type use (Like List<@annotation String>)
+- @Retention
+    - How annotations will be stored in Java.
+        - RetentionPolicy.Source: Annotation will be discarded by compiler itself and it will not be recorded in the .class file.
+        - RetentionPolicy.Class: Annotation will be recorded in the .class file but will be ignored by JVM at runtime.
+        - RetentionPolicy.Runtime: Annotation will be recorded in the .class file + Available at runtime. Usage of reflection can be done.
+- @Documented
+    - By default annotations are ignored when Java Documentation is generated.
+    - With this annotation, even the annotations will come in Java Docs.
+- @Inherited
+    - By default annotations applied on parent class are not inherited to child class
+- @Repeatable [Code](./Programs/Annotations/RepeatableAnnotation/Category.java)
+    - It allows us to use same annotation more than once at same place.
+
+**User Defined Annotations:**
+
+Create using @interface keyword
+```Java
+public @interface myCustomAnnotation {}
+
+@myCustomAnnotation
+public class TestClass {
+    public void fly() {}
+}
+
+public @interface myCustomAnnotation1 {
+    String name(); // Member of annotation. Can be primitive, Class, String, Enum, Annotations, or an array of these types.
+
+    // String name() default "Default Name";
+}
+
+@myCustomAnnotation1(name = "testing")
+// @myCustomAnnotation1 // If default value is given we can leave without providing a value
+public class TestClass1 {
+    public void fly() {}
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
