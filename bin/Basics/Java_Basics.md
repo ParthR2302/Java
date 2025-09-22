@@ -23,6 +23,7 @@
 - [Java Memory Management and Garbage Collector](#java-memory-management-and-garbage-collector)
 - [Reflection](#reflection)
 - [Annotations](#annotations)
+- [Exception Handling](#exception-handling)
 
 <br />
 
@@ -760,6 +761,57 @@ public @interface myCustomAnnotation1 {
 // @myCustomAnnotation1 // If default value is given we can leave without providing a value
 public class TestClass1 {
     public void fly() {}
+}
+```
+
+## Exception Handling
+
+It disrupts the normal flow of the program. It creates an `Exception Object` which stores the information about the error.
+
+Runtime system uses this Exception Object and find the class which can handle it.
+
+![alt text](./images/ExceptionsStack.png)
+
+### Exception Hierarchy:
+
+`Throwable` is a child class of Object class.
+    - Throwable has two children, `Error` and `Exception`.
+
+Error vs Exception:
+
+Error:
+- It is not in our hand to control. OutOfMemoryError, StackOverflowError. These are related to JVM issues.
+
+Exceptions:
+- Two types of exceptions: `Un-checked` (Runtime Exceptions) and `Checked` (Compile Time Exceptions) Exceptions.
+
+Runtime Exceptions:
+    - ClassCastException, ArithemeticException, IndexOutOfBoundException (ArrayIOBE, StringIOBE), NullPointerException, IllegalArgumentException
+
+Compile-time Exceptions:
+    - ClassNotFoundException, InterruptedException, IOException (FileNotFoundException, EOFException, SocketException), SQLException
+
+Handeling Exception:
+
+1. Using `throws` keyword
+    - throws tells that `this method might (or might not) throw this exception`, caller need to handle this properly.
+    - throws is used to delegate the exception to it's caller
+2. Using try-catch blocks
+
+Either handle the exception in the same method (Using try-catch) or delegate it to the caller using throws. 
+- In delegation approach, the handler method which is calling this method need to either handle the method (try-catch) or delegate to it's caller method.
+
+```Java
+public static void main(String args[]) {
+    method(); // Compiler will show error here
+}
+public void method() throws ClassNotFoundException {
+    throw new ClassNotFoundException
+}
+
+// Remove error from handler
+public static void main(String args[]) throws ClassNotFoundException {
+    method(); // Compiler will show error here
 }
 ```
 

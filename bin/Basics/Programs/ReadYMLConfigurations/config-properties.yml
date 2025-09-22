@@ -1,0 +1,6 @@
+kafkabq:
+  topic: "topic_name"
+  consumerGroup: "consumer_group_name"
+  brokers: "broker"
+  bqTenant: "bq_tenant_name"
+  bqTable: "bq_table_name"
