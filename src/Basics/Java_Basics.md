@@ -791,6 +791,8 @@ Runtime Exceptions:
 Compile-time Exceptions:
     - ClassNotFoundException, InterruptedException, IOException (FileNotFoundException, EOFException, SocketException), SQLException
 
+`Compiler doesn't force us to handle runtime exceptions`
+
 Handeling Exception:
 
 1. Using `throws` keyword
@@ -815,9 +817,10 @@ public static void main(String args[]) throws ClassNotFoundException {
 }
 ```
 
+**Used Keywords:** try, [catch](./Programs/Exceptions/UseOfCatch.java), [finally](./Programs/Exceptions/UseOfFinally.java), throw, [throws](./Programs/Exceptions/UseOfThrows.java)
 
 
-
+`finally` block will always get executed, either if we return from try block or from catch block. Unless any JVM errors like memory, system shutdown or process if forcefully killed
 
 
 
