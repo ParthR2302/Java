@@ -265,6 +265,27 @@ Type of Operators in Java:
 
 Precedence and Associativity of Java Operators:
 
+**Bitwise Operator:**
+
+In Java, there is no such thing as `unsignned`. int is a signed value.
+
+~(4) = -5. // Bitwise NOT, bitwise complement of an integer in -(n + 1).
+- 4: 0100
+- ~(4): 1011
+
+Since in Java, int is signed
+- ~(4): 1*2^(-3) + 0*2^2 + 1*2^2 + 1*2^0 = -5
+
+**Bitwise Shift Operators:**
+
+In Java, there is left shift, right shift and Unsigned Right Shift. There is no such thing as Unsigned Left Shift in Java.
+
+
+### Precedence:
+
+**Assosiativity:** If 2 operators have the same precedence, then its evaluated based on its Associativity.
+![Precedence](./images/operators_precedence.png)
+
 ## User Inputs:
 
 [Code](./Programs/UserInputs.java)
