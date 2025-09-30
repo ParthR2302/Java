@@ -337,6 +337,12 @@ Three ways: Scanner, BufferedReader, and Console [[$$](#references)]
 
 Decision Making Statements: if, if-else, switch, break, continue, jump (Three Jump Statements: break, continue and return).
 
+**Switch:**
+
+Return value from Switch using `Case N->` and `yeild`
+
+Using Case N-> we cannot have block of statements. If we want block of statement and return the value then use yeild
+
 ## Loops: 
 
 [Code](./Programs/Loops.java)
