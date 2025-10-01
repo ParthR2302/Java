@@ -1,4 +1,4 @@
-package JavaCollections.List;
+package JavaCollections.Programs.List;
 import java.util.Stack;
 
 /*
@@ -45,8 +45,29 @@ public class StackClass {
         st.add(9.24);
         st.add(14.9);
 
+        st.add(100d);
         st.add(2, 98.1423);
 
         StackClass.printStack(st);
+
+        System.out.println("\nBreak 1 --------------------------------------------------------------------------------------------------\n");
+
+        Stack<Integer> intSt = new Stack<>();
+
+        intSt.push(1);
+        intSt.push(2);
+        intSt.push(3);
+        intSt.push(4);
+        intSt.push(5);
+        intSt.push(6);
+        intSt.push(7);
+        intSt.push(8);
+        intSt.add(2, 10);
+
+        // StackClass.printStack(intSt);
+        while(!intSt.empty()) {
+            System.out.print(intSt.pop() + " ");
+        }
+        System.out.println();
     }
 }

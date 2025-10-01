@@ -2,6 +2,7 @@
 
 ### Index:
 
+- [History and Need](#history-and-need)
 - [Hierarchy](#hierarchy)
 - [Collection Interface](#collection-interface)
     - [List Interface](#list-interface)
@@ -10,16 +11,14 @@
         - [Stack](#stack)
         - [LinkedList](#linkedlist)
     - [Set Interface](#set-interface)
+- [Map Interface](#map-interface)
 
 <br>
 
 - [References](#references)
 
-## Hierarchy:
 
-Iterable is the root interface.
-
-[Collection Interface](#collection-interface) and Map interface are different and both extend the Iterable interface.
+## History and Need:
 
 Before the Collection Framework(or before JDK 1.2) was introduced, the standard methods for grouping Java objects (or collections) were Arrays or Vectors, or Hashtables. All of these collections had `no common interface`. Therefore, though the main aim of all the collections is the same, the implementation of all these collections was <u>defined independently</u> and had no correlation among them. 
 
@@ -44,7 +43,7 @@ public static void main(String[] args)
 }
 ```
 
-As we can observe, none of these collections(Array, Vector, or Hashtable) implements a standard member access interface, it was very difficult for programmers to write algorithms that can work for all kinds of Collections. 
+As we can observe, none of these collections(Array, Vector, or Hashtable) implement a standard member access interface, it was very difficult for programmers to write algorithms that can work for all kinds of Collections. 
 
 Another drawback is that most of the ‘Vector’ methods are final, meaning we cannot extend the ’Vector’ class to implement a similar kind of Collection. 
 
@@ -56,6 +55,20 @@ Therefore, Java developers decided to come up with a common interface to deal wi
 2. Reduces Programming Efforts:
 3. Increased Program speed and qaulity:
 
+## Hierarchy:
+
+Iterable is the root interface.
+
+Collection Interface:
+<image src="./images/Collection_Interface.png" width="750" height="400"> <br>
+
+Map Interface:
+![alt text](image.png)
+<image src="./images/Map_Interface.png" width="700" height="400"> <br>
+
+
+[Collection Interface](#collection-interface) and [Map interface](#map-interface) are different and both extend the Iterable interface.
+
 ## Collection Interface:
 
 **Collection:** An object that represents a group of objects, known as its elements.
@@ -64,18 +77,31 @@ Therefore, Java developers decided to come up with a common interface to deal wi
 - In Java, the `Collection interface` (java.util.Collection) and `Map interface` (java.util.Map) are the two main “root” interfaces. Both of them extend Iterable interface.
 - The utility package, (`java.util`) contains all the classes and interfaces that are required by the collection framework.
 
-Hierarchy of the collection framework:
-
-<image src="./images/collectionHierarchy.png" width="600" height="350"> <br>
-
 - The utility package, (java.util) contains all the classes and interfaces that are required by the collection framework. 
 - The collection framework extends an interface named `Iterable interface` which provides the iterator to iterate through all the collections. 
 - This interface is extended by the main `Collection interface` which acts `as a root` for the collection framework.
 
-**Iterable Interface** is the root interface. Any class which implements this interface use `for-each` loop on the objects of that class.
+**Iterable Interface** is the root interface. Any class which implements this interface use `for-each` loop on the objects of that class. [Code](./Programs/IterablePkg/IterableInterface.java)
+- Iterable Interface was added in Java 1.5
+
+Methods present in Iterable Interface: iterator() and forEach()
 
 **Collection Interface** is acts as the root inteface for all the other collection types.
 - List, Set, Queue, Deque are some of the interfaces which implement the collection interface. These nterfaces are then used to imlement different classes.
+
+All the methods which are present in the collection interface are shown in the examples of each concrete classes which implement the interface (Inside Programs Directory)
+
+**Collection vs Collections:**
+- Collection is part of Java Collection Framework. Its an Interface.
+- Collections is a `utility class` and provide static methods, which are used to operate on collections like swapping, searching, reverse, copy, etc.
+
+```Java
+import java.util.Collections;
+List<Integer> ls = Arrays.asList(9,8,7,6,5,4,3,2,1);
+System.out.println(Collections.max(ls));
+Collections.sort(ls);
+System.out.println(ls);
+```
 
 <hr>
 
@@ -107,7 +133,7 @@ How does **resizing** occur:
     - Initial capacity of vector is 2 (user defined). If we add 3 element then the size become 3 and capacity is automatically increased to 4 (2x). Now if we remove 2 elements then the size would become 1 but the capacity would still stay as 4.
     - We can achieve shrinking manually.
 
-We don't have direct access to capacity in ArrayList but it is directly accessible in [Vector](./List/VectorClass.java).
+We don't have direct access to capacity in ArrayList but it is directly accessible in [Vector](./Programs/List/VectorClass.java).
 
 **Notes:**
 - ArrayList grows dynamically, usually increasing capacity by 50% when it exceeds its current capacity. Vector grows by doubling its capacity when it exceeds its current limit.
@@ -115,7 +141,7 @@ We don't have direct access to capacity in ArrayList but it is directly accessib
 
 ### ArrayList:
 
-[Code](./List/ArrayListClass.java)
+[Code](./Programs/List/ArrayListClass.java)
 
 ArrayList Class implements List Interface which in turn extends Collection Interface.
 
@@ -143,7 +169,7 @@ List<String> list4 = Arrays.asList(strArr);
 
 
 **Methods:**
-- All the methods are mentioned in the [code](./List/ArrayListClass.java).
+- All the methods are mentioned in the [code](./Programs/List/ArrayListClass.java).
 - remove(). It can either take Object as input or Index as input
 - If the list contains Integer objects. `remove(2)` would take 2 as index because 2 is int. `remove((Integer)2)` would take 2 as an element.
 
@@ -170,7 +196,7 @@ System.out.println(ls); // [Monday, Tuesday, Wednesday, Thursday]
 
 ### Vector
 
-[Code](./List/VectorClass.java)
+[Code](./Programs/List/VectorClass.java)
 
 Same as ArrayList.
 
@@ -190,13 +216,13 @@ Vector<E> v4 = new Vector<E>(Collection c); // Creates a vector that contains th
 
 ### Stack
 
-[Code](./List/StackClass.java)
+[Code](./Programs/List/StackClass.java)
 
 <hr>
 
 ### LinkedList
 
-[Code](./List/LinkedListClass.java)
+[Code](./Programs/List/LinkedListClass.java)
 
 |Property|Linked List|Array|
 |-|-|-|
@@ -216,6 +242,11 @@ Vector<E> v4 = new Vector<E>(Collection c); // Creates a vector that contains th
 ## Set Interface:
 
 
+
+
+
+
+## Map Interface:
 
 
 
