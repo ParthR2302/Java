@@ -10,7 +10,9 @@
         - [Vector](#vector)
         - [Stack](#stack)
         - [LinkedList](#linkedlist)
+    - [Queue](#queue)
     - [Set Interface](#set-interface)
+- [Comparator vs Comparable](#comparator-vs-comparable)
 - [Map Interface](#map-interface)
 
 <br>
@@ -97,6 +99,7 @@ All the methods which are present in the collection interface are shown in the e
 
 ```Java
 import java.util.Collections;
+
 List<Integer> ls = Arrays.asList(9,8,7,6,5,4,3,2,1);
 System.out.println(Collections.max(ls));
 Collections.sort(ls);
@@ -238,12 +241,64 @@ Vector<E> v4 = new Vector<E>(Collection c); // Creates a vector that contains th
 **Disadvantages of Linked List:**
 - Memory overhead: LinkedList requires more memory than ArrayList because each element requires additional memory for the links to its predecessor and successor elements.
 
+## Queue:
+
+FIFO Structure. [Code](./Programs/QueuePkg/QueueInterface.java)
+
+New methods which Queue Interface has
+- `add()`: If insertion fails, throw an Exception
+- `offer()`: If insertion fails, return false
+- `poll()`: Retrieves and Removes head of the queue. Returns Null if Queue is empty.
+- `remove()`: Retrieves and Removes head of the queue. Returns Exception (NoSuchElementException) if Queue is empty.
+- `peek()`: Retrieve the present at the head of Queue. No removal. Null if queue is empty.
+- `element()`: Retrieve the present at the head of Queue. No removal. NoSuchElementException exception if queue is empty.
+
+### Classes which Implement Queue Interface:
+
+**Priority Queue:**
+
+[Min Heap](./Programs/QueuePkg/MinimumPriorityQueue.java) and [Max Heap](./Programs/QueuePkg/MaximumPriorityQueue.java)
+
+[Comparator](#comparator-vs-comparable)
 
 ## Set Interface:
 
 
+## Comparator vs Comparable:
+
+Comparator and Comparable both help in sorting the collection of objects.
+
+- Sorting in Descending order
+- [Objects collection sorting](./Programs/Comparators/ObjectsCollectionSorting.java)
 
 
+**Comparator** is a functional interface with one abstract method named `int compare(T o1, T o2);`
+- to compare 2 variables and decide whether to swap or not.
+
+Method returns:
+- 1: If o1 > o2
+- 0: If o1 == o2
+- -1: If o1 < o2
+
+**`Swapping is done` if the value is greater than 0 (>0).**
+
+Comparator can either be used in Lambad function or used while creating the seperate comparator class which then can be used to sort the collection of objects. [Code](./Programs/Comparators/UseOfComparableAndComparator.java)
+
+**Comparable** has the `int compareTo(T obj)` method.
+
+| Feature            | Comparable                | Comparator                      |
+| ------------------ | ------------------------- | ------------------------------- |
+| **Package**        | `java.lang`               | `java.util`                     |
+| **Method**         | `compareTo(T o)`          | `compare(T o1, T o2)`           |
+| **Sort Order**     | Natural (default, single) | Multiple custom                 |
+| **Implemented by** | `The class itself`        | `Separate class / lambda`       |
+| **Flexibility**    | Only one sorting sequence | Many sorting sequences possible |
+
+[Use of Comparator and Comparable](./Programs/Comparators/UseOfComparableAndComparator.java)
+
+**Thumb Rule:**
+- Use Comparable when your class has a single natural ordering (like sorting numbers or names alphabetically).
+- Use Comparator when you want multiple or external orderings.
 
 
 ## Map Interface:
