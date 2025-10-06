@@ -17,7 +17,7 @@ public class WildCards {
     public static void main(String[] args) {
         List<Vehicle> vehicleList = new ArrayList<>();
         vehicleList.add(new Bus());
-        vehicleList.add(new Car());
+        vehicleList.add(new Car1());
         List<Bus> busList = new ArrayList<>();
         List<SuperVehicle> superVehicleList = new ArrayList<>();
 
@@ -49,6 +49,6 @@ class Vehicle extends SuperVehicle {}
 
 class Bus extends Vehicle {}
 
-class Car extends Vehicle {}
+class Car1 extends Vehicle {}
 
 

@@ -11,6 +11,8 @@
         - [Stack](#stack)
         - [LinkedList](#linkedlist)
     - [Queue](#queue)
+        - [Priority Queue](#priority-queue)
+        - [deque](#deque)
     - [Set Interface](#set-interface)
 - [Comparator vs Comparable](#comparator-vs-comparable)
 - [Map Interface](#map-interface)
@@ -253,13 +255,19 @@ New methods which Queue Interface has
 - `peek()`: Retrieve the present at the head of Queue. No removal. Null if queue is empty.
 - `element()`: Retrieve the present at the head of Queue. No removal. NoSuchElementException exception if queue is empty.
 
-### Classes which Implement Queue Interface:
+**Classes which Implement Queue Interface:**
 
-**Priority Queue:**
+### Priority Queue:
 
 [Min Heap](./Programs/QueuePkg/MinimumPriorityQueue.java) and [Max Heap](./Programs/QueuePkg/MaximumPriorityQueue.java)
 
 [Comparator](#comparator-vs-comparable)
+
+### Deque:
+
+Double Ended Queue. [Code](./Programs/QueuePkg/DequeClass.java)
+
+`ArrayDeque is a concrete class`, implements the methods which are available in Queue and Deque class.
 
 ## Set Interface:
 

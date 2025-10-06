@@ -54,6 +54,6 @@ public class QueueInterface {
             System.out.println("Exception while doing element(): " + e);
         }
 
-        System.out.println(q.peek() == null ? "Poll returned null" : "Poll returned: " + front);
+        System.out.println(q.peek() == null ? "Peek returned null" : "Peek returned: " + q.peek());
     }
 }
