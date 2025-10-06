@@ -192,6 +192,12 @@ There are three things that happen when remove() method is used:
 - The capacity does not shrink automatically when remove() method is called.
 
 
+ArrayList is not `Thread Safe`. 
+- Thread safe version: 
+```Java
+List<Integer> list = CopyOnWriteArrayList<>();
+```
+
 **Behaviour of removeIf() method:**
 
 ```Java
@@ -211,7 +217,7 @@ System.out.println(ls); // [Monday, Tuesday, Wednesday, Thursday]
 
 Same as ArrayList.
 
-Difference: Vector is Synchronized (thread-safe) whereas ArrayList is Not-Synchronized (not thread-safe)
+**Difference:** Vector is Synchronized (`Thread Safe`) whereas ArrayList is Not-Synchronized (not thread-safe)
 
 `Stack` is a subclass of Vector.
 
@@ -229,11 +235,16 @@ Vector<E> v4 = new Vector<E>(Collection c); // Creates a vector that contains th
 
 [Code](./Programs/List/StackClass.java)
 
+We can implement Stack using Deque, then why do we need a seperate class for Stack?
+- Since its a child of Vector, hence, Thread Safe.
+
 <hr>
 
 ### LinkedList
 
 [Code](./Programs/List/LinkedListClass.java)
+
+LinkedList implements `List and Deque`.
 
 |Property|Linked List|Array|
 |-|-|-|
@@ -245,9 +256,12 @@ Vector<E> v4 = new Vector<E>(Collection c); // Creates a vector that contains th
 **Advantages of Linked List:**
 - Dynamic size like Vector.
 - Efficient Insertions and Deletions: LinkedList is an efficient data structure for inserting or deleting elements in the middle of the list because you only need to change the links between elements, rather than shifting all elements after the insertion or deletion point.
+- LinkedList is faster than ArrayList. Since, in LL we don't need to do shifting.
+    - Insert at particular index: O(N) for traversing, O(1) for adding a node.
 
 **Disadvantages of Linked List:**
 - Memory overhead: LinkedList requires more memory than ArrayList because each element requires additional memory for the links to its predecessor and successor elements.
+- Is Thread Safe? No
 
 ## Queue:
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 /*
@@ -29,6 +30,12 @@ import java.util.stream.Collectors;
  * - sort() ?
  * 
  * - Other methods: hashCode(), isEmpty(), containsAll(Collection)
+ * 
+ * 
+ * - Forward and Backward Direction Iterators in List
+ * 
+ * - Is thread Safe? No
+ * 
  */
 
 public class ArrayListClass {
@@ -220,6 +227,17 @@ public class ArrayListClass {
             System.out.print(val + " ");
             if(val == 300) listIterator1.add(250);
         }
+        System.out.println();
+
+        /*
+         * Thread safe version of ArrayList 
+        */
+        List<Integer> list = new CopyOnWriteArrayList<>();
+        list.add(1);
+        list.add(2);
+        list.add(0, 3);
+
+        list.forEach(ele -> System.out.print(ele + " "));
         System.out.println();
     }
 }
