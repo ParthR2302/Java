@@ -95,6 +95,10 @@ Methods present in Iterable Interface: iterator() and forEach()
 
 All the methods which are present in the collection interface are shown in the examples of each concrete classes which implement the interface (Inside Programs Directory)
 
+Methods available in Collection Interface:
+
+![Methods available in Collection Interface](./images/Methods_In_Collection_Interface.png)
+
 **Collection vs Collections:**
 - Collection is part of Java Collection Framework. Its an Interface.
 - Collections is a `utility class` and provide static methods, which are used to operate on collections like swapping, searching, reverse, copy, etc.
@@ -120,6 +124,8 @@ It is used to store the `ordered collections` of elements. So in a Java List, yo
 List<int> ls1 = new ArrayList<>(); // Error
 List<Integer> ls2 = new ArrayList<>(); // No errors
 ```
+
+In List, insertion and removal of elements can be done at any index/position.
 
 The <span style="color: rgb(206, 8, 8)">implementation classes</span> of List interface:
 - [ArrayList](#arraylist) | [Vector](#vector) | [Stack](#stack) | [LinkedList](#linkedlist)
@@ -268,6 +274,10 @@ New methods which Queue Interface has
 Double Ended Queue. [Code](./Programs/QueuePkg/DequeClass.java)
 
 `ArrayDeque is a concrete class`, implements the methods which are available in Queue and Deque class.
+
+ArrayDeque and PriorityQueue are `not thread safe`.
+
+**Thread Safe Versions:** PriorityBlockingQueue and ConcurrentLinkedDeque
 
 ## Set Interface:
 
