@@ -16,9 +16,12 @@
     - [Set Interface](#set-interface)
 - [Comparator vs Comparable](#comparator-vs-comparable)
 - [Map Interface](#map-interface)
+    - [Internal Working of HashMap](#internal-working-of-hashmap)
+    
 
 <br>
 
+- [Important](#important)
 - [References](#references)
 
 
@@ -64,10 +67,11 @@ Therefore, Java developers decided to come up with a common interface to deal wi
 Iterable is the root interface.
 
 Collection Interface:
+
 <image src="./images/Collection_Interface.png" width="750" height="400"> <br>
 
 Map Interface:
-![alt text](image.png)
+
 <image src="./images/Map_Interface.png" width="700" height="400"> <br>
 
 
@@ -295,6 +299,7 @@ ArrayDeque and PriorityQueue are `not thread safe`.
 
 ## Set Interface:
 
+`Note:` HashSet internally uses HashMap, LinkedHashSet internally uses LinkedHashMap, TreeSet internally uses TreeMap.
 
 ## Comparator vs Comparable:
 
@@ -335,9 +340,114 @@ Comparator can either be used in Lambad function or used while creating the sepe
 
 ## Map Interface:
 
+![Map Interface](./images/Map_Interface.png)
+
+Why is map not a part of Collection interface?
+- All the extending interfaces in Collection like list, set, etc. They all perform on single collection of data.
+- Map works on key-value type of data.
+
+### Type of Map:
+
+- **`HashMap`**: Does not maintain the order.
+- **`HashTable`**: Synchronized version of HashMap.
+- **`LinkedHashMap`**: Maintains the insertion order.
+- **`TreeMap`**: Sorts the data internally.
+
+**Methods available in Map Interface:**
+```
+size(), isEmpty(), containsKey(key), containsValue(key), get(key), put(k,v), remove(k), putAll(Map<k,v>), clear(), putIfAbset(k,v), getOrDefault(k, defaultValue)
+
+Set<k> keySet(), Collection<v> values(), Set<Map.entry<k,v>> entrySet().
+```
+
+`entrySet()` is a method in Map that returns a Set of all key–value pairs as Map.Entry objects.
+
+### HashMap:
+
+How does put and get methods work? For this we first need to know how is data stored in a Map.
+
+Things we need to know before knowing how data is stored:
+1. Load Factor
+2. Entry<k, v> interface
+3. Re-hashing
+4. Performance
+
+There is a sub interface named Entry inside the Map Interface. Map is an `array of Entry<k, v>`.
+
+**How is Data Stored in Map, and how does get and put methods work in Map?**
+
+**HashMap:**
+
+In the HashMap data is stored in an array of Inner `Node` class which internally implements the Map.Entry<k,v> interface.
+- Default initial size of this array is 1<<4.
+Node class has int hash, K key, V value and Node<k,v> next class variables. 
+
+Method Working:
+
+How does put method work in HashMap?
+
+1. Do hashing on key.
+2. Do Modulo by size of the array on that hash.
+3. Store the hash,key,value,next at that index of array of Node<k,v>.
+    3.1 What is `collision occurs` while getting the index?
+
+**When Collision Occurs:**
+
+In HashMap, when trying to use put, we get a hashcode based on key and is then converted to the index of the array of Nodes. If there already exists an object, then this new object is added in the LinkedList.
+- The link is achieved with the use of next class variable of Node.
+- These objects in the LL are also called Buckets or Beans.
+
+
+Note: After Java 8, there has been a change in this list, if the size of the list `goes beyond TREEIFY_THRESHOLD` which has value as 8, it is then `converted into Red-Black` tree to save the time for querying from N to logN.
+
+```Java
+// Code from HashMap.class - looping over the list
+p.next = newNode(hash, key, value, null);
+if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+    treeifyBin(tab, hash);
+```
+
+`Load Factor:`
+
+The average TC of CRUD operations in o(1) and worst TC is O(N). Load factor is used to bring the average TC to constant.
+
+Default load factor of HashMap is 0.75.
+- If the size of the array is 17, then based on load factor the value comes as 12. Meaning whenever the 13th Key-Value entry comes, HashMap does re-hashing. It will increase the size (Double it).
+- Since, resizing keeps happening when volume increase, chances of collision decrease hence it helps in keeping the average TC constant. 
+- But its not guarenteed that only load factor helps in keeping this constant. Even if size of the array is large, but in worst case for each key, the value of index from hash code comes as same.
+    - Treeify threshold comes here. 
+
+`Treeify Threshold:`
+
+The moment the size of linked list goes beyong treeify threshold, convert the list into balanced binary search tree (red-black tree).
+- Because of the balanced BST, the worst TC comes down to O(logN)
+
+Working of Get:
+- Get the hash code from Key
+- Get the index from that hash code
+- Traverse in the list pressent at that index and if found return the value for that key
+
+Hash of same key should be same in both put and get operations.
+
+There are two Contracts between `hashcode and equal` method.
+1. If obj1 == obj2, then theie hash **must also be same**
+2. If two objects have same hash, it **doesn't mean** these two objects are equal
+    - Hash is used for getting to a particular index. If there are 2 objects with same hashcode, we go to same index for those objects. But we don't really care if index is coming same for different objects as we are tackeling the collision.
+
+### HashTable:
+
+HashMap is `Not Thread Safe`. HashTable is the thread safe version of HashMap.
+
+Unlike HashMap, HashTable does not contain null key or null values.
+
+ConcurrentHashMap can also be used for Synchronised (Thread safe) access.
 
 
 
+## Important:
+
+1. Design Hash Map: Interview question.
+2. How to handle the case of Collision?
 
 ## Reference:
 
