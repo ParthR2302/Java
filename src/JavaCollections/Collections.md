@@ -17,6 +17,10 @@
 - [Comparator vs Comparable](#comparator-vs-comparable)
 - [Map Interface](#map-interface)
     - [Internal Working of HashMap](#internal-working-of-hashmap)
+    - [HashMap](#hashmap)
+    - [HashTable](#hashtable)
+    - [LinkedHashMap](#linkedhashmap)
+    - [TreeMap](#treemap)
     
 
 <br>
@@ -297,8 +301,6 @@ ArrayDeque and PriorityQueue are `not thread safe`.
 
 **Thread Safe Versions:** PriorityBlockingQueue and ConcurrentLinkedDeque
 
-## Set Interface:
-
 `Note:` HashSet internally uses HashMap, LinkedHashSet internally uses LinkedHashMap, TreeSet internally uses TreeMap.
 
 ## Comparator vs Comparable:
@@ -353,6 +355,8 @@ Why is map not a part of Collection interface?
 - **`LinkedHashMap`**: Maintains the insertion order.
 - **`TreeMap`**: Sorts the data internally.
 
+[HashMap](#hashmap) | [HashTable](#hashtable) | [LinkedHashMap](#linkedhashmap) | [TreeMap](#treemap)
+
 **Methods available in Map Interface:**
 ```
 size(), isEmpty(), containsKey(key), containsValue(key), get(key), put(k,v), remove(k), putAll(Map<k,v>), clear(), putIfAbset(k,v), getOrDefault(k, defaultValue)
@@ -363,6 +367,8 @@ Set<k> keySet(), Collection<v> values(), Set<Map.entry<k,v>> entrySet().
 `entrySet()` is a method in Map that returns a Set of all key–value pairs as Map.Entry objects.
 
 ### HashMap:
+
+[Code](./Programs/MapInterface/HashMapPkg/HashMapClass.java)
 
 How does put and get methods work? For this we first need to know how is data stored in a Map.
 
@@ -442,7 +448,49 @@ Unlike HashMap, HashTable does not contain null key or null values.
 
 ConcurrentHashMap can also be used for Synchronised (Thread safe) access.
 
+### LinkedHashMap:
 
+[Code](./Programs/MapInterface/LinkedHashMapPkg/LinkedHashMapClass.java)
+
+Similar to HashMap. Major difference is that `LinkedHashMap maintains the order`.
+
+2 types of order it maintains:
+- Insertion order
+- Or maintain the access order
+
+Access order? One which is most recently used. Least recently used items on left and `most recently used items on the right` in order from left to right.
+
+Its similar to HashMap, but it used `Double LinkedList`.
+
+LinkedHashMap Entry (Node) has these `properties`: hash, value, next, before, after. (Before and After are used for Double Linked List to track the order of insertion. Next is used for pointing to next node at the same index in array when collision occurs)
+
+```Java
+// forEach() of LinkedHashMap
+
+// start iterating from head and go to node pointing using after (instead of next)
+for (LinkedHashMap.Entry<K,V> e = head; e != null; e = e.after)
+    action.accept(e.key);
+```
+
+There are `afterNodeAccess`, `afterNodeInsertion`, `afterNodeRemoval` methods present inside the LinkedHashMap class which help in access based reordering.
+
+There is `no thread-safe version available` for LinkedHashMap, we have to manually make it thread-safe using synchronisedMap method of Collections class.
+
+### TreeMap
+
+TreeMap implements NavigableMap extends SortedMap extends SequencedMap extends Map.
+
+Is sorted according to ites natural ordering of its Key or by Comparator provided during Map creation. Uses Red-Black tree.
+
+[Code](./Programs/MapInterface/TreeMapPkg/TreeMapClass.java)
+
+O(logN) TC for insert, remove, get operations
+
+`Entry (Node) contains` these things: key, value, left, right, parent, color.
+
+`Additional Methods` present in the sorted map: headMap(), tailMap(), firstKey(), lastKey().
+
+There are several methods available in NavigableMap which we can use in TreeMap as well.
 
 ## Important:
 
