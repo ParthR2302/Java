@@ -492,10 +492,48 @@ O(logN) TC for insert, remove, get operations
 
 There are several methods available in NavigableMap which we can use in TreeMap as well.
 
+## Set Interface:
+
+LinkedHashSet maintains the insertion order. TreeSet stores elements in sorted order.
+
+### HashSet:
+
+[Code](./Programs/SetPkg/HashSetClass.java)
+
+Internally it is using HashMap. 
+- Is thread safe? No
+- Null element allowed? One
+
+hashSet.add(1) internally works like hashMap.put(1, new Object());
+
+Methods present: size(), isEmpty(), contains(), toArray(), add(), remove(), clear(), equals(), stream(), parallelStream(), iterator()
+
+Additional Methods: addAll() -> Union of 2 Sets, removeAll() -> Difference of 2 Sets, retainAll() -> Intersact of 2 Sets
+
+Thread Safe version: CouncurrentHashMap
+
+### LinkedHashSet:
+
+Uses LinkedHashMap.
+
+Inside LinkedHashMap, it maintains insertion order as well as access order. For LinkedHashSet only insertion order is maintained.
+
+Why not access order? Inside the constructor of LinkedHashMap, even if we pass a boolean value for accessOrder, the internal calling of super constructor is done with accessOrder having a value of false.
+- The exposure is not provided
+
+
+### TreeSet:
+
+O(logN) - Uses Red-Black tree.
+
+No null elements are allowed.
+
 ## Important:
 
 1. Design Hash Map: Interview question.
 2. How to handle the case of Collision?
+
+[Thread related issue](./Programs/ThreadRelatedIssuePkg/UpdateWhileReadingIssue.java)
 
 ## Reference:
 
