@@ -618,9 +618,17 @@ Internally it does:
 - Task submission and parallel processing: Uses `fork-join pool technique`
 
 
+### Stream like behaviour for Map and Set:
 
+[Set](./Programs/StreamPkg/StreamInSet.java) also implements Collection so it directly.
 
+Map does not implement Collection interface. Hence, we cannot directly use stream on map. We can achieve that by converting it into a Collection view.
 
+- map.keySet() → Set<K>
+- map.values() → Collection<V>
+- map.entrySet() → Set<Map.Entry<K, V>>
+
+[Code](./Programs/StreamPkg/StreamInMap.java)
 
 
 
