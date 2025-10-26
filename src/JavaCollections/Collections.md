@@ -21,7 +21,8 @@
     - [HashTable](#hashtable)
     - [LinkedHashMap](#linkedhashmap)
     - [TreeMap](#treemap)
-    
+- [Stream](#stream)
+
 
 <br>
 
@@ -96,7 +97,7 @@ Map Interface:
 **Iterable Interface** is the root interface. Any class which implements this interface use `for-each` loop on the objects of that class. [Code](./Programs/IterablePkg/IterableInterface.java)
 - Iterable Interface was added in Java 1.5
 
-Methods present in Iterable Interface: iterator() and forEach()
+Methods present in Iterable Interface: **`iterator() and forEach()`**
 
 **Collection Interface** is acts as the root inteface for all the other collection types.
 - List, Set, Queue, Deque are some of the interfaces which implement the collection interface. These nterfaces are then used to imlement different classes.
@@ -527,6 +528,101 @@ Why not access order? Inside the constructor of LinkedHashMap, even if we pass a
 O(logN) - Uses Red-Black tree.
 
 No null elements are allowed.
+
+
+## Stream
+
+[Code](./Programs/StreamPkg/StreamClass.java)
+
+We can consider stream as `a pipeline, which our collection elements pass through`.
+
+While elements pass through pipelines, it performs various operations like sorting, filtering, etc.
+
+Useful when dealing with **`bulk processing`**. (It can also do parallel processing)
+
+Steps to perform:
+- Step-1: Create stream on Collection
+- Step-2: Intermediate Operations: filtered(), sorted(), map(), distict(), etc.
+    - These operations transforms the stream into another stream and more operations can be done on top of it.
+    - These are `lazy in nature`, meaning these operations get executed only when terminal operation is invoked.
+- Step-3: Terminal Operations: collect(), reduce(), count()
+    - These operations trigger the processing of stream
+    - And produce the output. After terminal operation is used, **no more operations can be performed**.
+    - There can only be one terminal operation. It closes the stream. 
+
+When we use streams, original **`data is not changed`** at all.
+
+**Different ways to create the stream:** 
+- Mentioned in the code file
+
+
+**List of intermediate methods that are present in stream:**
+- filter(): Used to filter elements based on given condition
+- map(): It is used to transform each elements
+- flatMap(): Used to flatten nested structures
+- distinc(): Removes duplicate from stream
+- sorted(): Sort the elements
+- peek(): Helps in to see the intermediate result of the stream which is getting processed
+- limit(): truncate the stream, to have no longer than the given maxSize
+- skip(): skip the first n element of the stream
+- mapToInt(): helps to work with primitive int data type.
+    - mapToLong(), mapToDouble()
+
+**`Notes:`**
+- A Stream `can be consumed only once`. If we perform a terminal operation on a Stream, we cannot use the same stream again.
+
+**Why are intermediate operations called Lazy in nature?**
+
+```Java
+List<Integer> ls = Arrays.asList(1,2,3,4,5,6,7,8,9);
+Stream<Integer> stream = ls.stream().filter((Integer num) -> num > 2).peek((Integer num) -> System.out.println("Ele: " + num));
+
+// No output.
+// Why? peek() is an intermediate operation. We have not used any terminal operation hence filter and peek and not executed.
+
+// If we call a terminal operation, then it would print in output
+stream.collect();
+```
+
+### Sequence of stream operations:
+
+For each elements in the collection, while doing stream, we go as deep as possible in operations.
+
+There are certain operations which cannot be performed on partial collection. (Like sort())
+
+Two types of intermediate operations: `Stateless` and `Stateful`
+
+Refer to [sequenceOfStreamOperations()](./Programs/StreamPkg/StreamClass.java) method.
+
+**List of intermediate methods that are present in stream:**
+- forEach(): Perform an action on each elements of the stream. Does not return any value.
+- count(); Count the number of elements in the result of the stream
+- toArray(): Collects the element of the stream into an array
+- reduce(): Does reduction on the elements of the stream. Perform associative aggregation function.
+- min() and max(): min() for getting the first element of the result, max() for getting the last element of the stream result.
+- anyMatch(), allMatch(), noneMatch()
+- findFirst(), findAny()
+
+**Do We Wait for the Whole Stream Before Terminal Operation?**
+
+Not always. Streams are pulled, not pushed.
+- Each element flows on demand from source → intermediate → terminal, one by one, unless a stateful operation interrupts it.
+
+
+### Parallel Stream:
+
+Helps to perform operations on stream concurrently, taking advantage of multi core CPU.
+
+Internally it does:
+- Task splitting: It uses "spliterator" function to split the data into multiple chunks
+- Task submission and parallel processing: Uses `fork-join pool technique`
+
+
+
+
+
+
+
 
 ## Important:
 
