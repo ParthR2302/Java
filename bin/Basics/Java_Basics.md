@@ -24,6 +24,7 @@
 - [Reflection](#reflection)
 - [Annotations](#annotations)
 - [Exception Handling](#exception-handling)
+- [Multithreading](#multithreading)
 
 <br />
 
@@ -849,14 +850,121 @@ public static void main(String args[]) throws ClassNotFoundException {
 
 `finally` block will always get executed, either if we return from try block or from catch block. Unless any JVM errors like memory, system shutdown or process if forcefully killed
 
+## Multithreading:
+
+### Thread vs Process:
+
+`Process` is an instance of a program that is being executed.
+- It has its own resources like memory, thread, etc. OS allocate these resource to process when it is created.
+
+`Thread` is known as lightweight process. Smallest sequence of instructions that are executed by CPU independently.
+
+When a process gets created, it starts with 1 thread. That initial thread is known as `main thread`.
+- One process can have multiple threads. These different threads are created to perform tasks concurrently.
+
+Compilation (javac Test.java) -> Generates bytecode that can be executed by JVM.
+- Execution (java Test) -> At this point the JVM starts a new process.
+
+JVM has Heap, Stack, Code Segment, Data Segment, Registers, Program Counters, etc.
+
+What happens when we run a program (java Test):
+1. Creates a process
+2. A new JVM instance is created
+3. 
+
+Heap memory is given to each instance of JVM. How much memory does one instance use? We can define that.
+- We run compiled java code with command: java MainClass
+- We can use: java -Xms256m -Xmx2g MainClass 
+    - -Xms256m: Initial heap size 256MB, -Xmx2g: Max 2GB
+
+![Heap Memory for JVM and Each Process Instance](./images/Heap_Memory_JVM_And_Each_Process.png)
+
+There can be multiple threads in a process.
+
+For each `threads, Register, Stack and Counter are local` (They don't share between eachother). They `share Code segment and Data segment` among all the threads.
+
+**Code Segment:**
+- Contains the compiled bytecode (Machine code) of Java program
+- Its readonly
+
+**Data Segment:**
+- Holds global variables, static variables, constants, class metadata, etc.
+- Threads can read and modify the same data.
+- Synchronization is required between multiple threads.
+
+**Heap:**
+- Objects created at runtime using "new" keyword are allocated in the Heap
+- Heap is shared among all the threads of the same process (Not between different processes)
+    - For process1, X8000 heap memory is pointing to some location in physical memory, same X8000 heap memory points to different location for process2.
+- Threads can read and modify heap's data. Synchronization is required between multiple threads.
+
+**Stack:**
+- Each thread has its own stack.
+- It manages method call, local variables, references
+
+**Register:**
+- When JIT compiles and converts the bytecode into native machine code, it uses register to optimize generated machine code
+- Also helps in `context switching`. 
+- Each thread has its own register
+
+**Counter:**
+- Also know as program counter, it points to the instruction which is getting executed.
+- Increaments its counter after successful execution of the instruction.
+
+All of the above is managed by JVM.
+
+When JIT converts bytecode to machine code, it checks how many threads are required. Based on that it creates threads for the JVM instance. Assignment of stack, register and counter is also done at this stage.
+
+JIT then saves the machine code into code segment.
+
+After machine code is generated, `CPU comes into picture`.
+
+CPU also has its own register. OS (Sometime JVM scheduler) schedules or Manages which thread should go to CPU for execution.
+- CPU loads the machine code from the Code segments based on the thread and counter assigned to it by the scheduler. 
+- CPU will execute the code. 
+- When the time or the excecution gets completed, context switching happens.
+    
+**What is Context Swithcing?**
+- Context switching means the CPU stops executing one thread and starts executing another, saving and restoring each thread’s execution context.
+- Each thread has:
+    - Its own program counter (PC) — where it left off in the code
+    - Its own stack (local variables, method calls)
+    - Its own registers (temporary CPU data)
+- When a switch happens, the CPU:
+    - Saves the current thread’s context (PC, registers, stack pointer, etc.).
+    - Loads the context of the next thread to run.
+    - Continues executing from where that thread left off.
 
 
+**In short:**
+- Each JVM instance runs as a separate process.
+- Each process has its own heap and data/code segments.
+- Each thread in the JVM has its own stack and counter but shares the heap.
+- CPUs use caches and registers to execute instructions quickly using data from main memory.
 
+**Benefits and Challanges of Multithreading:**
 
+### Thread Creation:
 
+Implementing Runnable Interface or Extending Thread class.
 
+**Using Runnable interface:** [Code](./Programs/ThreadPkg/RunnableImplemented.java)
+1. Create a Runnable object.
+    - Create a class and implement Runnable interface.
+    - Implement run() method
+2. Start the thread.
+    - Create an instance of class that implements Runnable
+    - Pass the Runnable object to the Thread constructor
+    - Start the thread.
+        - When we invoke the start() method of thread class, internally it calls the run() method
 
-
+**Extending "Thread" Class** [Code](./Programs/ThreadPkg/ThreadSubClass.java)
+1. Create a Thread sub class
+    - Class that extends Thread class
+    - Override the run() method
+2. Initiate and start the thread
+    - Create and instance of sub class
+    - Call the start() method to begin the execution
 
 
 ## Miscellaneous Material:
