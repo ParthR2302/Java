@@ -944,6 +944,16 @@ CPU also has its own register. OS (Sometime JVM scheduler) schedules or Manages 
 
 **Benefits and Challanges of Multithreading:**
 
+Benfits:
+- Improved performance by task parallelism
+- Responsivness
+- Resource Sharing
+
+Challanges:
+- Concurrency issues like dead lock, data inconsistency, etc.
+- Synchronised overhead
+- Testing and debuggin difficulty
+
 ### Thread Creation:
 
 Implementing Runnable Interface or Extending Thread class.
@@ -958,6 +968,8 @@ Implementing Runnable Interface or Extending Thread class.
     - Start the thread.
         - When we invoke the start() method of thread class, internally it calls the run() method
 
+Passing **`different method than run()`** method while creating a Thread using Lambda function. [Code](./Programs/ThreadPkg/CallRunMethod.java)
+
 **Extending "Thread" Class** [Code](./Programs/ThreadPkg/ThreadSubClass.java)
 1. Create a Thread sub class
     - Class that extends Thread class
@@ -966,6 +978,23 @@ Implementing Runnable Interface or Extending Thread class.
     - Create and instance of sub class
     - Call the start() method to begin the execution
 
+
+### Thread Lifecycle:
+
+![Thread Lifecycle](./images/Thread_Lifecycle.png)
+
+**States of a Thread:** New, Runnable, Running, Blocked, Waiting, Timed Waiting, Terminated.
+
+When a thread is in Runnable state, it puts a `Monitor Lock`. Whenever thread goes into blocked state or waiting state, it releases all the Monitor Locks. Does not release any Monitor Locks in Timed Waiting.
+
+**Monitor Lock:** It helps to make sure only one thread goes inside a particular section of code (A synchronised block or method). [Code](./Programs/ThreadPkg/MonitorLockExplain.java)
+
+When Thread-1 enters synchronised block or method:
+- It must acquire the monitor of sharedObject.
+- While it holds the lock, no other thread can enter any synchronized block that locks on the same sharedObject.
+- When Thread-1 exits the block, it releases the monitor so another thread (say Thread-2) can enter.
+
+More details on how Synchronised methods work: [Code](./Programs/ThreadPkg/SynchronisedMethod.java)
 
 ## Miscellaneous Material:
 
