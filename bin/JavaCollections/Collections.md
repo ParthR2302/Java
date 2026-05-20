@@ -2,26 +2,37 @@
 
 ### Index:
 
-- [History and Need](#history-and-need)
-- [Hierarchy](#hierarchy)
-- [Collection Interface](#collection-interface)
-    - [List Interface](#list-interface)
-        - [ArrayList](#arraylist)
-        - [Vector](#vector)
-        - [Stack](#stack)
-        - [LinkedList](#linkedlist)
-    - [Queue](#queue)
-        - [Priority Queue](#priority-queue)
-        - [deque](#deque)
-    - [Set Interface](#set-interface)
-- [Comparator vs Comparable](#comparator-vs-comparable)
-- [Map Interface](#map-interface)
-    - [Internal Working of HashMap](#internal-working-of-hashmap)
-    - [HashMap](#hashmap)
-    - [HashTable](#hashtable)
-    - [LinkedHashMap](#linkedhashmap)
+- [Collections Frameworks and Streams](#collections-frameworks-and-streams)
+    - [Index:](#index)
+  - [History and Need:](#history-and-need)
+  - [Hierarchy:](#hierarchy)
+  - [Collection Interface:](#collection-interface)
+  - [List Interface:](#list-interface)
+    - [Size and Capcity:](#size-and-capcity)
+    - [ArrayList:](#arraylist)
+    - [Vector](#vector)
+    - [Stack](#stack)
+    - [LinkedList](#linkedlist)
+  - [Queue:](#queue)
+    - [Priority Queue:](#priority-queue)
+    - [Deque:](#deque)
+  - [Comparator vs Comparable:](#comparator-vs-comparable)
+  - [Map Interface:](#map-interface)
+    - [Type of Map:](#type-of-map)
+    - [HashMap:](#hashmap)
+    - [HashTable:](#hashtable)
+    - [LinkedHashMap:](#linkedhashmap)
     - [TreeMap](#treemap)
-- [Stream](#stream)
+  - [Set Interface:](#set-interface)
+    - [HashSet:](#hashset)
+    - [LinkedHashSet:](#linkedhashset)
+    - [TreeSet:](#treeset)
+  - [Stream](#stream)
+    - [Sequence of stream operations:](#sequence-of-stream-operations)
+    - [Parallel Stream:](#parallel-stream)
+    - [Stream like behaviour for Map and Set:](#stream-like-behaviour-for-map-and-set)
+  - [Important:](#important)
+  - [Reference:](#reference)
 
 
 <br>
@@ -73,11 +84,11 @@ Iterable is the root interface.
 
 Collection Interface:
 
-<image src="./images/Collection_Interface.png" width="750" height="400"> <br>
+<image src="./images/Collection_Interface.png" width="1250" height="800"> <br>
 
 Map Interface:
 
-<image src="./images/Map_Interface.png" width="700" height="400"> <br>
+<image src="./images/Map_Interface.png" width="900" height="600"> <br>
 
 
 [Collection Interface](#collection-interface) and [Map interface](#map-interface) are different and both extend the Iterable interface.
@@ -153,7 +164,7 @@ How does **resizing** occur:
     - Initial capacity of vector is 2 (user defined). If we add 3 element then the size become 3 and capacity is automatically increased to 4 (2x). Now if we remove 2 elements then the size would become 1 but the capacity would still stay as 4.
     - We can achieve shrinking manually.
 
-We don't have direct access to capacity in ArrayList but it is directly accessible in [Vector](./Programs/List/VectorClass.java).
+We don't have direct access to capacity in ArrayList but it is directly accessible in [Vector](./Programs/ListPkg/VectorClass.java).
 
 **Notes:**
 - ArrayList grows dynamically, usually increasing capacity by 50% when it exceeds its current capacity. Vector grows by doubling its capacity when it exceeds its current limit.
@@ -161,7 +172,7 @@ We don't have direct access to capacity in ArrayList but it is directly accessib
 
 ### ArrayList:
 
-[Code](./Programs/List/ArrayListClass.java)
+[Code](./Programs/ListPkg/ArrayListClass.java)
 
 ArrayList Class implements List Interface which in turn extends Collection Interface.
 
@@ -189,7 +200,7 @@ List<String> list4 = Arrays.asList(strArr);
 
 
 **Methods:**
-- All the methods are mentioned in the [code](./Programs/List/ArrayListClass.java).
+- All the methods are mentioned in the [code](./Programs/ListPkg/ArrayListClass.java).
 - remove(). It can either take Object as input or Index as input
 - If the list contains Integer objects. `remove(2)` would take 2 as index because 2 is int. `remove((Integer)2)` would take 2 as an element.
 
@@ -222,7 +233,7 @@ System.out.println(ls); // [Monday, Tuesday, Wednesday, Thursday]
 
 ### Vector
 
-[Code](./Programs/List/VectorClass.java)
+[Code](./Programs/ListPkg/VectorClass.java)
 
 Same as ArrayList.
 
@@ -242,7 +253,7 @@ Vector<E> v4 = new Vector<E>(Collection c); // Creates a vector that contains th
 
 ### Stack
 
-[Code](./Programs/List/StackClass.java)
+[Code](./Programs/ListPkg/StackClass.java)
 
 We can implement Stack using Deque, then why do we need a seperate class for Stack?
 - Since its a child of Vector, hence, Thread Safe.
@@ -251,7 +262,7 @@ We can implement Stack using Deque, then why do we need a seperate class for Sta
 
 ### LinkedList
 
-[Code](./Programs/List/LinkedListClass.java)
+[Code](./Programs/ListPkg/LinkedListClass.java)
 
 LinkedList implements `List and Deque`.
 
