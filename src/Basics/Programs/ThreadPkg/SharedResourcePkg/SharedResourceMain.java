@@ -1,8 +1,4 @@
-package Basics.Programs.ThreadPkg;
-
-import Basics.Programs.ThreadPkg.SharedResourcePkg.ConsumeTask;
-import Basics.Programs.ThreadPkg.SharedResourcePkg.ProduceTask;
-import Basics.Programs.ThreadPkg.SharedResourcePkg.SharedResource;
+package Basics.Programs.ThreadPkg.SharedResourcePkg;
 
 public class SharedResourceMain {
     public static void main(String[] args) {

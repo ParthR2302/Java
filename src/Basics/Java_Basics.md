@@ -996,6 +996,14 @@ When Thread-1 enters synchronised block or method:
 
 More details on how Synchronised methods work: [Code](./Programs/ThreadPkg/SynchronisedMethod.java)
 
+Shared Resource - Producer and Consumer [code](./Programs/ThreadPkg/SharedResourcePkg/SharedResourceMain.java)
+
+
+
+
+
+
+
 ## Miscellaneous Material:
 
 1. [Object Class](#object-class)

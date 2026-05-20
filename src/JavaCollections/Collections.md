@@ -2,26 +2,37 @@
 
 ### Index:
 
-- [History and Need](#history-and-need)
-- [Hierarchy](#hierarchy)
-- [Collection Interface](#collection-interface)
-    - [List Interface](#list-interface)
-        - [ArrayList](#arraylist)
-        - [Vector](#vector)
-        - [Stack](#stack)
-        - [LinkedList](#linkedlist)
-    - [Queue](#queue)
-        - [Priority Queue](#priority-queue)
-        - [deque](#deque)
-    - [Set Interface](#set-interface)
-- [Comparator vs Comparable](#comparator-vs-comparable)
-- [Map Interface](#map-interface)
-    - [Internal Working of HashMap](#internal-working-of-hashmap)
-    - [HashMap](#hashmap)
-    - [HashTable](#hashtable)
-    - [LinkedHashMap](#linkedhashmap)
+- [Collections Frameworks and Streams](#collections-frameworks-and-streams)
+    - [Index:](#index)
+  - [History and Need:](#history-and-need)
+  - [Hierarchy:](#hierarchy)
+  - [Collection Interface:](#collection-interface)
+  - [List Interface:](#list-interface)
+    - [Size and Capcity:](#size-and-capcity)
+    - [ArrayList:](#arraylist)
+    - [Vector](#vector)
+    - [Stack](#stack)
+    - [LinkedList](#linkedlist)
+  - [Queue:](#queue)
+    - [Priority Queue:](#priority-queue)
+    - [Deque:](#deque)
+  - [Comparator vs Comparable:](#comparator-vs-comparable)
+  - [Map Interface:](#map-interface)
+    - [Type of Map:](#type-of-map)
+    - [HashMap:](#hashmap)
+    - [HashTable:](#hashtable)
+    - [LinkedHashMap:](#linkedhashmap)
     - [TreeMap](#treemap)
-- [Stream](#stream)
+  - [Set Interface:](#set-interface)
+    - [HashSet:](#hashset)
+    - [LinkedHashSet:](#linkedhashset)
+    - [TreeSet:](#treeset)
+  - [Stream](#stream)
+    - [Sequence of stream operations:](#sequence-of-stream-operations)
+    - [Parallel Stream:](#parallel-stream)
+    - [Stream like behaviour for Map and Set:](#stream-like-behaviour-for-map-and-set)
+  - [Important:](#important)
+  - [Reference:](#reference)
 
 
 <br>
@@ -73,11 +84,11 @@ Iterable is the root interface.
 
 Collection Interface:
 
-<image src="./images/Collection_Interface.png" width="750" height="400"> <br>
+<image src="./images/Collection_Interface.png" width="1250" height="800"> <br>
 
 Map Interface:
 
-<image src="./images/Map_Interface.png" width="700" height="400"> <br>
+<image src="./images/Map_Interface.png" width="900" height="600"> <br>
 
 
 [Collection Interface](#collection-interface) and [Map interface](#map-interface) are different and both extend the Iterable interface.
